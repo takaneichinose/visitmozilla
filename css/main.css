@@ -174,3 +174,9 @@ input[type=submit] {
 {
 	border:1px solid red;
 }
+
+#visitors{
+  width: 900px;
+  margin-top: 100px !important;
+  margin: auto;
+}
