@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <head>
-    <title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>
-    <meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
-    <link href="css/reset.css" media="all" rel="stylesheet" />
-    <link href="css/main.css" media="all" rel="stylesheet" />
-    <link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
+	<title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>
+	<meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
+	<link href="css/reset.css" media="all" rel="stylesheet" />
+	<link href="css/main.css" media="all" rel="stylesheet" />
+	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/jquery-ui.css">
 </head>
 <body>
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
@@ -14,102 +15,78 @@
     <div id="logo">
         <img src="images/mcs-logo.png" />
     </div>
-    
-    <div id="context">
-        <h1>Welcome to Mozilla Community Space Manila!</h1>
-        <p>To get started, we encourage you to fill out this form for RSVP.</p>
-        
-        <form>
-            <input type="text" id="visitDate" name="visitDate" placeholder="Date of Visit" required />
-<!--             <select name="visitTime">
-                <option selected>Time of Arrival</option>
-                <option value="">8:00 AM</option>
-                <option value="">8:30 AM</option>
-                <option value="">9:00 AM</option>
-                <option value="">9:30 AM</option>
-                <option value="">10:00 AM</option>
-                <option value="">10:30 AM</option>
-                <option value="">11:00 AM</option>
-                <option value="">11:30 AM</option>
-                <option value="">12:00 PM</option>
-                <option value="">12:30 PM</option>
-                <option value="">1:00 PM</option>
-                <option value="">1:30 PM</option>
-                <option value="">2:00 PM</option>
-                <option value="">2:30 PM</option>
-                <option value="">3:00 PM</option>
-                <option value="">3:30 PM</option>
-                <option value="">4:00 PM</option>
-                <option value="">4:30 PM</option>
-                <option value="">5:00 PM</option>
-                <option value="">5:30 PM</option>
-                <option value="">6:00 PM</option>
-                <option value="">6:30 PM</option>
-                <option value="">7:00 PM</option>
-                <option value="">7:30 PM</option>
-                <option value="">8:00 PM</option>
-                <option value="">8:30 PM</option>
-                <option value="">9:00 PM</option>
-            </select>   -->
 
-            <input type="text" placeholder="Time of Arrival" id="visitTime" />
-            <select>
-                <option selected>Title</option>
-                <option value="">Mr.</option>
-                <option value="">Ms.</option>
-                <option value="">Mrs.</option>
-            </select>  
-            <input type="text" id="" name="" placeholder="First Name" required />
-            <input type="text" id="" name="" placeholder="Last Name" required />
-            <input type="email" id="" name="" placeholder="Email Addres" required />
-            <input type="text" id="" name="" placeholder="Mobile Number" required />
-            <input type="text" id="" name="" placeholder="School/Company/Organization" required />
-            <input type="text" id="" name="" placeholder="Position" required />
-             <input type="text" id="" name="" placeholder="Twitter Handler" required />
-            <select>
-                <option selected>Have you visited our Space before?</option>
-                <option value="">Yes</option>
-                <option value="">No</option>
+    <div class="context" id="thanks-ui">
+        <h1>Success!</h1>
+        <p>You are now registered. See you soon!</p>
+    </div>
+
+    
+    <div class="context" id="register-ui">
+        <h1>Welcome to Mozilla Community Space Manila!</h1>
+        <p>Please fill-up our Visitor Registration System. Thank you!</p>
+ 
+        <form method="post" id="registration_form">
+            <select name="firstTime" id="firstTime" required>
+                <option value="" selected>First time visitor?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
             </select>
-            <select>
-                <option selected>Are you a Mozillian?</option>
-                <option value="">Yes</option>
-                <option value="">No</option>
+            <input type="text" id="visitDate" name="visitDate" placeholder="Date of Visit" required/>
+            <input type="text" name="visitTime" placeholder="Time of Visit" id="visitTime" required />        
+            <select name="salutation" id="salutation" required>
+                <option value="" selected>Title</option>
+                <option value="Mr">Mr.</option>
+                <option value="Mrs">Ms.</option>
+                <option value="Mrs">Mrs.</option>
+            </select>  
+            <input type="text" id="fName" name="fName" placeholder="First Name" required />
+            <input type="text" id="lName" name="lName" placeholder="Last Name" required />
+            <input type="email" id="email" name="email" placeholder="Email Addres" required />
+			<input type="text" id="twitter" name="twitter" placeholder="Twitter Handle" required />
+            <input type="text" id="contact" name="contact" placeholder="Mobile Number" required />
+            <input type="text" id="organization" name="organization" placeholder="School/Company/Organization" required />
+            <select name="position" id="position" required>
+                <option value="" selected>Position</option>
+                <option value="student">Student</option>
+                <option value="professional">Professional</option>
+				<option value="others">Others</option>
+            </select>
+            <select id="isMozillian" name="isMozillian" required>
+                <option value="" selected>Are you a Mozillian?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
             </select>
             <!-- HIDDEN FORM IF SELECTED YES -->
-             <select>
-                <option selected>What type of Mozillian are you?</option>
-                <option value="">Firefox Student Ambassador</option>
-                <option value="">Mozilla Rep</option>
-                <option value="">Vouched Mozillian</option>
+             <select name="mozillianType" id="mozillianType">
+                <option value="" selected>What type of Mozillian are you?</option>
+                <option value="fsa">Firefox Student Ambassador</option>
+                <option value="remo">Mozilla Rep</option>
+                <option value="mozillian">Vouched Mozillian</option>
             </select>
             <!-- END -->
-            <select>
-                <option selected>Valid ID to be Presented</option>
-                <option value="">School</option>
-                <option value="">Corporate</option>
-                <option value="">Government</option>
+            <select name="legalID" id="legalID" required>
+                <option value="" selected>Type of legal ID for validation</option>
+                <option value="school">School</option>
+                <option value="corporate">Corporate</option>
+                <option value="government">Government</option>
             </select>
             <input type="submit" id="submit" name="submit" value="Register" />
         </form>
     </div>
+	
+	<div class="context" id="request-ui">
+		<h1>One moment, please.</h1>
+		<p>Just sending your request. This will just take a few seconds.</p>
+	</div>
 </div>
 
 <!-- JS  -->
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<script src="/js/jquery-ui-timepicker-addon.js"></script>
-<script>
-$(function(){
-    $('#visitDate').datepicker({ minDate:0});
-    //add minDate
-
-    $('#visitTime').timepicker({timeFormat: "hh:mm tt"});
-    //add on
-});
-</script>
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/timepicker.js"></script>
+<script src="js/script.js"></script>
 <!-- END -->
 </body>
 </html>

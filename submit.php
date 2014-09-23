@@ -33,7 +33,7 @@ echo 'true';
 // multiple recipients
 $to = '$email';
 // subject
-$subject = '[Mozilla Space Manila] RSVP Confirmed';
+$subject = '[Mozilla Space Manila] Visitor Registration Confirmed';
 
 $message .= '
  <html>
@@ -44,11 +44,6 @@ $message .= '
     {
       font-family: "Open Sans", sans-serif;
     }
-	h1
-	{
-		font-size:1.3em;
-		color: #C13832;
-	}
 	p
 	{
 		font-size:1em;
@@ -56,8 +51,8 @@ $message .= '
     </style>
   </head>
   <body>
-  <h1>We are excited to see you!</h1>
-  <p>Hi there!<br /> This is to confirm that we have received your request for RSVP. Thank you for using our online RSVP service!</p>
+  <p>Hi there!
+This is to confirm that we have received your appointment request at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
   <br />
   <p>- Mozilla Community Space Manila Management</p>
 </body>
