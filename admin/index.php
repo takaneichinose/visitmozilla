@@ -7,14 +7,16 @@ require_once '../functions/list_visitors.php';
 	<meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
 	<link href="../css/reset.css" media="all" rel="stylesheet" />
 	<link href="../css/main.css" media="all" rel="stylesheet" />
-  <!--
+	<link href="../css/foundation.css" media="all" rel="stylesheet" />
+	<link href="../css/foundation.min.css" media="all" rel="stylesheet" />
+	<link href="../css/normalize.css" media="all" rel="stylesheet" />
+	<link href="../css/main.css" media="all" rel="stylesheet" />
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
   <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  -->
   <link rel="stylesheet" href="../css/jquery-ui.css">
 </head>
 <body>
-<!--<a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>-->
+<a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
 
 <div id="wrapper">
     <div id="logo">
@@ -51,11 +53,11 @@ require_once '../functions/list_visitors.php';
             <td><?php echo $visitor['DateOfArrival']; ?></td>
             <td>
               <?php if($visitor['checkInStatus'] == false){ ?>
-                <button class='checkin' data-id='<?php echo $visitor['visitor_id']; ?>'>
+                <button class='checkin tiny' data-id='<?php echo $visitor['visitor_id']; ?>'>
                   Checkin
                 </button>
               <?php }else{ ?>
-                <button class='checkin' data-id='<?php echo $visitor['visitor_id']; ?>'>
+                <button class='checkin tiny success' data-id='<?php echo $visitor['visitor_id']; ?>'>
                   checked-in
                 </button>
               <?php } ?>
@@ -69,21 +71,17 @@ require_once '../functions/list_visitors.php';
 </div>
 
 <!-- JS  -->
-<!--
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
--->
-<script src="../js/jquery-1.10.2.js"></script>
-<script src="../js/jquery-ui.js"></script>
-<script src="../js/timepicker.js"></script>
-<script src="../js/script.js"></script>
+<script type="text/javascript" src="../js/vendor/jquery.js"></script>
+<script type="text/javascript" src="../js/foundation.min.js"></script>
 <script>
   $(document).on('click', '.checkin', function(){
-    if ($(this).text().trim() == 'Incomplete') {
-      $(this).css('background', '#0AA80A');
+    if ($(this).text().trim() == 'checked-in') {
+      $(this).css('background', '#007095');
       $(this).text('checkin');
     }
     else{
-      $(this).css('background', '#4b8df9');
+      $(this).css('background', '#43AC6A');
       $(this).text('checked-in');
     }
 
