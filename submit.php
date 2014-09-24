@@ -2,9 +2,8 @@
 include("config/config.php");
 if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) )
 {
-	// allow access....
-$con =  mysql_connect(LH, HOST, PW);
-mysql_select_db(DB, $con);
+
+// Set time zone
 date_default_timezone_set('Asia/Manila');
 
 $firstTime = $_POST['firstTime'];
@@ -25,12 +24,14 @@ $legalId = $_POST['legalID'];
 $checkin = "false";
 $regTime = date('Y/m/d H:i:s'); // insert time stamp here
 
-mysql_query("INSERT INTO visitors_log(firstTimeVisitor,DateOfArrival,expectedTimeOfArrival,timeOfArrival,salutation,firstName,lastName,emailAddress,twitterUsername,mobileNumber,organization,position,isMozillian,mozillianType,idPresented,checkInStatus,registrationTime) VALUES('$firstTime','$visitDate','$visitTime','$timeOfArrival','$salutation','$fName','$lName','$email','$twitter','$contact','$organization','$position','$isMozillian','$mozillianType','$legalId','$checkin','$regTime')");
-echo 'true';
+
+$insert_query = "INSERT INTO visitors_log(firstTimeVisitor,DateOfArrival,expectedTimeOfArrival,timeOfArrival,salutation,firstName,lastName,emailAddress,twitterUsername,mobileNumber,organization,position,isMozillian,mozillianType,idPresented,checkInStatus,registrationTime) VALUES('$firstTime','$visitDate','$visitTime','$timeOfArrival','$salutation','$fName','$lName','$email','$twitter','$contact','$organization','$position','$isMozillian','$mozillianType','$legalId','$checkin','$regTime')";
+$execute_insert_query = mysqli_query($db_connection, $insert_query) or die(mysqli_error($db_connection));
 
 
 /* EMAIL */
 // multiple recipients
+
 $to = '$email';
 // subject
 $subject = '[Mozilla Space Manila] Visitor Registration Confirmed';
@@ -81,8 +82,7 @@ if( $retval == true )
 
 /* EMAIL END */
 
-
-mysql_close();
+mysqli_close($db_connection);
 }
 else
 {
