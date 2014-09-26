@@ -1,4 +1,4 @@
-    $('#visitDate').datepicker({ minDate:0});
+    $('#visitDate').datepicker({ minDate:0, dateFormat: "yy-mm-dd"});
 
     $('#visitTime').timepicker({timeFormat: "hh:mm tt"});
 
@@ -36,6 +36,7 @@ $("#registration_form").submit(function(e) {
         data: t,
 		success: function(data)
 		{
+      console.log("DATA", data);
 			$('#thanks-ui').show().delay(1000).fadeOut("slow");
 			$('#register-ui').show();
 			$('#request-ui').hide();
@@ -48,7 +49,6 @@ $("#registration_form").submit(function(e) {
     });
 	this.reset();
 	e.preventDefault();
-	e.unbind();
 	$('#request-ui').hide();
 	return false;
 })
