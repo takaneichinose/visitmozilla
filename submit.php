@@ -3,40 +3,54 @@ include("config/config.php");
 if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) )
 {
 
-// Set time zone
-date_default_timezone_set('Asia/Manila');
-
-$firstTime = $_POST['firstTime'];
-$visitDate = $_POST['visitDate'];
-$visitTime = $_POST['visitTime'];
-$timeOfArrival = NULL;
+// Visitors Info.
 $salutation = $_POST['salutation'];
-$fName = $_POST['fName'];
-$lName = $_POST['lName'];
-$email = $_POST['email'];
-$twitter = $_POST['twitter'];
-$contact = $_POST['contact'];
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$email_address = $_POST['email_address'];
+$twitter_handler = $_POST['twitter_handler'];
 $organization = $_POST['organization'];
 $position = $_POST['position'];
-$isMozillian = $_POST['isMozillian'];
-$mozillianType = $_POST['mozillianType'];
-$legalId = $_POST['legalID'];
-$checkin = "false";
-$regTime = date('Y/m/d H:i:s'); // insert time stamp here
+$mozillian_type = $_POST['mozillian_type'];
+$mobile_number = $_POST['mobile_number'];
+$date_registered = date('Y/m/d H:i:s'); // insert time stamp here
 
 
-$insert_query = "INSERT INTO visitors_log(firstTimeVisitor,DateOfArrival,expectedTimeOfArrival,timeOfArrival,salutation,firstName,lastName,emailAddress,twitterUsername,mobileNumber,organization,position,isMozillian,mozillianType,idPresented,checkInStatus,registrationTime) VALUES('$firstTime','$visitDate','$visitTime','$timeOfArrival','$salutation','$fName','$lName','$email','$twitter','$contact','$organization','$position','$isMozillian','$mozillianType','$legalId','$checkin','$regTime')";
-$execute_insert_query = mysqli_query($db_connection, $insert_query) or die(mysqli_error($db_connection));
+//Visitors Log
+$first_visit = $_POST['first_visit'];
+$is_mozillian = $_POST['is_mozillian'];
+//Convert string to datetime
+$visit_date = $_POST['visit_date'];
+$visit_time = date("H:i:s", strtotime($_POST['visit_time']));
+echo $visit_date;
+echo strtotime($_POST['visit_time']);
+echo '<br/>';
+echo $visit_time;
 
+$select_visitor_query="SELECT * FROM visitors_info WHERE email_address='$email_address'";
+$execute_select_visitor_query=mysqli_query($db_connection, $select_visitor_query) or die(mysqli_error($db_connection));
+
+if (mysqli_num_rows($execute_select_visitor_query) > 0){
+  echo 'We detect that you have already an account. You can set schedule here.';
+  exit();
+}
+
+$insert_visitor_info_query = "INSERT INTO visitors_info(salutation, first_name, last_name, email_address, twitter_handler, organization, position, mozillian_type, mobile_number, date_registered) VALUES('$salutation','$first_name','$last_name','$email_address','$twitter_handler','$organization','$position','$mozillian_type','$mobile_number','$date_registered')";
+$execute_insert_query = mysqli_query($db_connection, $insert_visitor_info_query) or die(mysqli_error($db_connection));
+
+
+$insert_visitors_log_query = "INSERT INTO visitors_log(email_address, first_visit, date_of_arrival, time_of_arrival, is_mozillian) VALUES('$email_address','$first_visit','$visit_date','$visit_time','$is_mozillian')";
+$execute_insert_visitors_log_query = mysqli_query($db_connection, $insert_visitors_log_query) or die(mysqli_error($db_connection));
+echo $insert_visitors_log_query;
 
 /* EMAIL */
 // multiple recipients
 
-$to = '$email';
+$to = '$email_address';
 // subject
 $subject = '[Mozilla Space Manila] Visitor Registration Confirmed';
 
-$message .= '
+$message = '
  <html>
   <head>
     <title>RSVP Confirmed</title>
@@ -66,7 +80,7 @@ $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 // Additional headers
-$headers .= 'To:' . $_POST['fName'] . ' ' . $_POST['lName'] . '<' . $_POST['email'] . '>' . "\r\n";
+$headers .= 'To:' . $_POST['first_name'] . ' ' . $_POST['last_name'] . '<' . $_POST['email_address'] . '>' . "\r\n";
 $headers .= 'From: Mozilla Philippines <info@mozillaphilippines.org>' . "\r\n";
 // Mail it
 $retval = mail($to, $subject, $message, $headers);

@@ -4,12 +4,16 @@
 	<meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
 	<link href="css/reset.css" media="all" rel="stylesheet" />
 	<link href="css/main.css" media="all" rel="stylesheet" />
+  <!--
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  -->
     <link rel="stylesheet" href="css/jquery-ui.css">
 </head>
 <body>
+<!--
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
+-->
 
 <div id="wrapper">
     <div id="logo">
@@ -27,50 +31,40 @@
         <p>Please fill-up our Visitor Registration System. Thank you!</p>
  
         <form method="post" id="registration_form">
-            <select name="firstTime" id="firstTime" required>
+            <select name="first_visit" id="firstTime" required>
                 <option value="" selected>First time visitor?</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
             </select>
-            <input type="text" id="visitDate" name="visitDate" placeholder="Date of Visit" required/>
-            <input type="text" name="visitTime" placeholder="Time of Visit" id="visitTime" required />        
+            <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
+            <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />        
             <select name="salutation" id="salutation" required>
                 <option value="" selected>Title</option>
-                <option value="Mr">Mr.</option>
-                <option value="Mrs">Ms.</option>
-                <option value="Mrs">Mrs.</option>
+                <option value="Mr.">Mr.</option>
+                <option value="Mrs.">Ms.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Prof.">Prof.</option>
+                <option value="Doc.">Doc.</option>
             </select>  
-            <input type="text" id="fName" name="fName" placeholder="First Name" required />
-            <input type="text" id="lName" name="lName" placeholder="Last Name" required />
-            <input type="email" id="email" name="email" placeholder="Email Addres" required />
-			<input type="text" id="twitter" name="twitter" placeholder="Twitter Handle" required />
-            <input type="text" id="contact" name="contact" placeholder="Mobile Number" required />
+            <input type="text" id="fName" name="first_name" placeholder="First Name" required />
+            <input type="text" id="lName" name="last_name" placeholder="Last Name" required />
+            <input type="email" id="email" name="email_address" placeholder="Email Addres" required />
+			<input type="text" id="twitter" name="twitter_handler" placeholder="Twitter Handle" required />
+            <input type="text" id="contact" name="mobile_number" placeholder="Mobile Number" required />
             <input type="text" id="organization" name="organization" placeholder="School/Company/Organization" required />
-           <!--  <select name="position" id="position" required>
-                <option value="" selected>Position</option>
-                <option value="student">Student</option>
-                <option value="professional">Professional</option>
-				<option value="others">Others</option>
-            </select> -->
             <input type="text" name='position' id="position" placeholder="Position" required>
-            <select id="isMozillian" name="isMozillian" required>
+            <select id="isMozillian" name="is_mozillian" required>
                 <option value="" selected>Are you a Mozillian?</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
             </select>
             <!-- HIDDEN FORM IF SELECTED YES -->
-             <select name="mozillianType" id="mozillianType">
+             <select name="mozillian_type" id="mozillianType">
                 <option value="" selected>What type of Mozillian are you?</option>
                 <option value="fsa">Firefox Student Ambassador</option>
                 <option value="mozillian">Vouched Mozillian</option>
             </select>
             <!-- END -->
-            <select name="legalID" id="legalID" required>
-                <option value="" selected>Type of legal ID for validation</option>
-                <option value="school">School</option>
-                <option value="corporate">Corporate</option>
-                <option value="government">Government</option>
-            </select>
             <input type="submit" id="submit" name="submit" value="Register" />
         </form>
     </div>
@@ -82,7 +76,9 @@
 </div>
 
 <!-- JS  -->
+<!--
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
+-->
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
