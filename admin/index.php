@@ -1,8 +1,7 @@
 <?php
 require_once '../functions/list_visitors.php';
 ?>
-<!DOCTYPE html>
-<html> 
+<!DOCTYPE html> <html> 
 <head>
 	<title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>
 	<meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
@@ -48,7 +47,7 @@ require_once '../functions/list_visitors.php';
         <?php while($visitor = mysqli_fetch_array($execute_select_all_visitors_query)) { ?>
           <tr>
             <td colspan='2'>
-              <a href='#'>
+            <a href="/visitmozilla/admin/visitor_profile.php?id=<?php echo $visitor['visitor_id']; ?>">
                 <?php echo $visitor['salutation'].'. '.$visitor['first_name'].' '.$visitor['last_name']; ?>
               </a>
             </td>
