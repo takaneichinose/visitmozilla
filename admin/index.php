@@ -2,7 +2,8 @@
 require_once '../functions/list_visitors.php';
 ?>
 <!DOCTYPE html>
-<html> <head>
+<html> 
+<head>
 	<title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>
 	<meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
 	<link href="../css/reset.css" media="all" rel="stylesheet" />
@@ -48,25 +49,29 @@ require_once '../functions/list_visitors.php';
           <tr>
             <td colspan='2'>
               <a href='#'>
-                <?php echo $visitor['salutation'].'. '.$visitor['firstName'].' '.$visitor['lastName']; ?>
+                <?php echo $visitor['salutation'].'. '.$visitor['first_name'].' '.$visitor['last_name']; ?>
               </a>
             </td>
             <td colspan=2><?php echo $visitor['organization']; ?></td>
-            <td>12:00 PM</td>
-            <td colspan=2 style='text-align:center'>
-              <select>
-                <option value=''></option>
-                <option value='School ID'>School ID</option>
-                <option value='SSS ID'>SSS ID</option>
-              </select>
-            </td>
+            <td><?php echo date("g:i a", strtotime($visitor['time_of_arrival'])); ?></td>
+            <?php if ($visitor['id_presented']) { ?>
+              <td colspan=2 style='text-align:center'><label class='id_presented'><?php echo $visitor['id_presented']; ?></label></td>
+            <?php } else { ?>
+              <td colspan=2 style='text-align:center'>
+                <select name='id_presented'>
+                  <option value=''></option>
+                  <option value='School ID'>School ID</option>
+                  <option value='SSS ID'>SSS ID</option>
+                </select>
+              </td>
+            <?php } ?>
             <td style='text-align:center;'>
-              <?php if($visitor['checkInStatus'] == false){ ?>
-                <button class='checkin tiny' data-id='<?php echo $visitor['visitor_id']; ?>'>
+              <?php if($visitor['check_in_status'] == false){ ?>
+                <button class='checkin tiny' data-id='<?php echo $visitor['log_id']; ?>'>
                   Checkin
                 </button>
               <?php }else{ ?>
-                <button class='checkin tiny success' data-id='<?php echo $visitor['visitor_id']; ?>'>
+                <button class='checkin tiny success' data-id='<?php echo $visitor['log_id']; ?>'>
                   checked-in
                 </button>
               <?php } ?>
@@ -87,19 +92,44 @@ require_once '../functions/list_visitors.php';
 <script type="text/javascript" src="../js/foundation.min.js"></script>
 <script>
   $(document).on('click', '.checkin', function(){
-    if ($(this).text().trim() == 'checked-in') {
-      $(this).css('background', '#007095');
-      $(this).text('checkin');
+    var id_presented = $(this).parent().parent().find('select').val();
+    var ids = ["", "SSS ID", "Driver Lisence", "School ID"];
+    var that = $(this);
+    var data = {
+      id: $(this).attr('data-id'),
+      id_presented: id_presented 
     }
-    else{
-      $(this).css('background', '#43AC6A');
-      $(this).text('checked-in');
+
+    if (id_presented == '') {
+      return false;
+    }
+
+    function id_options(ids){
+      var id_list='';
+      for(var i=0; i < ids.length; i++){
+        id_list += "<option value='" + ids[i] + "'>" + ids[i] + "</option>"; 
+      }
+      return id_list;
     }
 
     $.ajax({
       url:'/visitmozilla/functions/checkin.php',
-      data:{id: $(this).attr('data-id') },
-      type:"POST"
+      data: data,
+      type:"POST",
+      success: function(data){
+        if (that.text().trim() == 'checked-in') {
+          that.css('background', '#007095');
+          that.text('checkin');
+          that.parent().parent().find('.id_presented').hide();
+          that.parent().prev().append("<select name='id_presented'>" + id_options(ids) + "</select>");
+        }
+        else{
+          that.css('background', '#43AC6A');
+          that.text('checked-in');
+          that.parent().parent().find('select').hide();
+          that.parent().prev().append("<label class='id_presented'>" + id_presented + "</label>");
+        }
+      }
     });
   });
 </script>
