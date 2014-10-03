@@ -3,7 +3,6 @@
 require_once '../config/config.php';
 
 $id=$_POST['id'];
-$valid_id=$_POST['id_presented'];
 
 //Select record in walkin_attendees using email
 $select_visitor_log_query="SELECT * FROM visitors_log WHERE log_id = '$id'";
@@ -17,13 +16,12 @@ $value='';
 
 if($status == true){
   $value = false;
-  $valid_id= '';
 }
 else{
   $value = true;
 }
 
-$checkin_query="UPDATE visitors_log SET check_in_status='$value', id_presented='$valid_id', datetime_checked_in='$datetime_checked_in' WHERE log_id = '$id'";
+$checkin_query="UPDATE visitors_log SET check_in_status='$value', datetime_checked_in='$datetime_checked_in' WHERE log_id = '$id'";
 $execute_checkin_query=mysqli_query($db_connection, $checkin_query) or die(mysqli_error($db_connection));
 ?>
 

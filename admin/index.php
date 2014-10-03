@@ -33,7 +33,6 @@ require_once '../functions/list_visitors.php';
             <th colspan=2>Name</th>
             <th colspan=2>Organization</th>
             <th>Time of Visit</th>
-            <th colspan=2>ID Presented</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -52,17 +51,6 @@ require_once '../functions/list_visitors.php';
             </td>
             <td colspan=2><?php echo $visitor['organization']; ?></td>
             <td><?php echo date("g:i a", strtotime($visitor['time_of_arrival'])); ?></td>
-            <?php if ($visitor['id_presented']) { ?>
-              <td colspan=2 style='text-align:center'><label class='id_presented'><?php echo $visitor['id_presented']; ?></label></td>
-            <?php } else { ?>
-              <td colspan=2 style='text-align:center'>
-                <select name='id_presented'>
-                  <option value=''></option>
-                  <option value='School ID'>School ID</option>
-                  <option value='SSS ID'>SSS ID</option>
-                </select>
-              </td>
-            <?php } ?>
             <td style='text-align:center;'>
               <?php if($visitor['check_in_status'] == false){ ?>
                 <button class='checkin tiny' data-id='<?php echo $visitor['log_id']; ?>'>
@@ -90,24 +78,9 @@ require_once '../functions/list_visitors.php';
 <script type="text/javascript" src="../js/foundation.min.js"></script>
 <script>
   $(document).on('click', '.checkin', function(){
-    var id_presented = $(this).parent().parent().find('select').val();
-    var ids = ["", "SSS ID", "Driver Lisence", "School ID"];
     var that = $(this);
     var data = {
-      id: $(this).attr('data-id'),
-      id_presented: id_presented 
-    }
-
-    if (id_presented == '') {
-      return false;
-    }
-
-    function id_options(ids){
-      var id_list='';
-      for(var i=0; i < ids.length; i++){
-        id_list += "<option value='" + ids[i] + "'>" + ids[i] + "</option>"; 
-      }
-      return id_list;
+      id: $(this).attr('data-id')
     }
 
     $.ajax({
@@ -118,14 +91,10 @@ require_once '../functions/list_visitors.php';
         if (that.text().trim() == 'checked-in') {
           that.css('background', '#007095');
           that.text('checkin');
-          that.parent().parent().find('.id_presented').hide();
-          that.parent().prev().append("<select name='id_presented'>" + id_options(ids) + "</select>");
         }
         else{
           that.css('background', '#43AC6A');
           that.text('checked-in');
-          that.parent().parent().find('select').hide();
-          that.parent().prev().append("<label class='id_presented'>" + id_presented + "</label>");
         }
       }
     });
