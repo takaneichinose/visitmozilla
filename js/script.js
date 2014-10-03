@@ -18,7 +18,7 @@ $("#isMozillian").change(function()
 
 // automatically adds a "@" value when clicked
 
-$('#twitter').click(function()
+$('#twitter').on('focus', function()
 {
 	$('#twitter').val("@");
 });
