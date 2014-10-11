@@ -10,7 +10,7 @@ body
 {
     body
     {
-      background: url(../images/photobg.jpg) no-repeat center center fixed; 
+      background: url(../images/photobg.jpg) no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -158,7 +158,7 @@ input[type=submit] {
  font-size: 1em; line-height: 2.5em;
  color: #333;
  font-weight: bold;
- height: 2.5em; 
+ height: 2.5em;
  width: 70%;
  background: #fdfdfd; background: -moz-linear-gradient(top, #fdfdfd 0%, #bebebe 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#bebebe)); background: -webkit-linear-gradient(top, #fdfdfd 0%,#bebebe 100%); background: -o-linear-gradient(top, #fdfdfd 0%,#bebebe 100%); background: -ms-linear-gradient(top, #fdfdfd 0%,#bebebe 100%); background: linear-gradient(to bottom, #fdfdfd 0%,#bebebe 100%);
  border: 1px solid #bbb;
@@ -187,4 +187,12 @@ input[type=submit] {
 
 thead tr th{
   text-align: center;
+}
+
+
+select{
+  background-color: transparent;
+  border: 1px solid #bbb;
+  margin-bottom: 10px;
+  width: 92%;
 }
