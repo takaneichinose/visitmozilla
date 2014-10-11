@@ -4,16 +4,16 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 {
 
 // Visitors Info.
-$email_address = $_POST['email_address'];
-$is_mozillian = $_POST['is_mozillian'];
-$visit_date = $_POST['visit_date'];
-$visit_time = date("H:i:s", strtotime($_POST['visit_time']));
+$email_address = $_REQUEST['email_address'];
+$is_mozillian = $_REQUEST['is_mozillian'];
+$visit_date = $_REQUEST['visit_date'];
+$visit_time = date("H:i:s", strtotime($_REQUEST['visit_time']));
 
 $select_visitor_query="SELECT * FROM visitors_info WHERE email_address='$email_address'";
 $execute_select_visitor_query=mysqli_query($db_connection, $select_visitor_query) or die(mysqli_error($db_connection));
 $info = mysqli_fetch_assoc($execute_select_visitor_query);
 if (mysqli_num_rows($execute_select_visitor_query) == 0){
-  echo 'We detect that you dont have an account. You can register here.';
+    echo "<p>We detect that you dont have an account yet. You can register <a href='visit.html'>here</a></p>";
   exit();
 }
 
@@ -57,11 +57,11 @@ $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 // Additional headers
-$headers .= 'To:' . $info['first_name'] . ' ' . $info['last_name'] . '<' . $_POST['email_address'] . '>' . "\r\n";
+$headers .= 'To:' . $info['first_name'] . ' ' . $info['last_name'] . '<' . $_REQUEST['email_address'] . '>' . "\r\n";
 $headers .= 'From: Mozilla Philippines <info@mozillaphilippines.org>' . "\r\n";
 // Mail it
 $retval = mail($to, $subject, $message, $headers);
-if( $retval == true )  
+if( $retval == true )
    {
       echo "Form has been submitted!";
    }
