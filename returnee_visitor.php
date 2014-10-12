@@ -1,21 +1,37 @@
+<?php
+  require_once 'functions/session.php';
+?>
 <!DOCTYPE html>
 <head>
 	<title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>
 	<meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
 	<link href="css/reset.css" media="all" rel="stylesheet" />
+	<link href="css/foundation.css" media="all" rel="stylesheet" />
+	<link href="css/foundation.min.css" media="all" rel="stylesheet" />
+	<link href="css/normalize.css" media="all" rel="stylesheet" />
 	<link href="css/main.css" media="all" rel="stylesheet" />
+  <link rel="stylesheet" href="css/jquery-ui.css">
   <!--
+  NOTE: Uncomment after development
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   -->
-    <link rel="stylesheet" href="css/jquery-ui.css">
 </head>
 <body>
 <!--
+NOTE: Uncomment after development
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
 -->
-
 <div id="wrapper">
+    <?php if(!$is_logged_in) { ?>
+      <button class='button tiny right' id='login-button' style='margin-right: 10%;'>login</button>
+    <?php } else { ?>
+      <div id='user-settings' class='right' style='margin-right: 10%;'>
+      <a href='/visitmozilla/admin/visitor_profile.php?email=<?php echo $_SESSION['email']; ?>' id='email'><?php echo $_SESSION['email']; ?></a>
+        | &nbsp;
+        <a href='functions/logout.php' id='logout-button'>logout</a>
+      </div>
+    <?php } ?>
     <div id="logo">
         <img src="images/mcs-logo.png" />
     </div>
@@ -50,13 +66,14 @@
 	</div>
 </div>
 
-<!-- JS  -->
 <!--
+NOTE: Uncomment after development
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
 -->
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
+<script src="js/returnee.js"></script>
 <script>
 $('#visitDate').datepicker({ minDate:0,maxDate:new Date(), dateFormat: "yy-mm-dd"});
 $('#visitTime').timepicker({timeFormat: "hh:mm tt"});
@@ -91,6 +108,5 @@ $("#visit_form").submit(function(e) {
 	return false;
 });
 </script>
-<!-- END -->
 </body>
 </html>

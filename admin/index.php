@@ -74,7 +74,7 @@ require_once '../functions/list_visitors.php';
         <?php while($visitor = mysqli_fetch_array($execute_select_all_visitors_query)) { ?>
           <tr>
             <td colspan='2'>
-            <a href="/visitmozilla/admin/visitor_profile.php?id=<?php echo $visitor['visitor_id']; ?>">
+            <a href="/visitmozilla/admin/visitor_profile.php?email=<?php echo $visitor['email_address']; ?>">
                 <?php echo $visitor['salutation'].'. '.$visitor['first_name'].' '.$visitor['last_name']; ?>
               </a>
             </td>

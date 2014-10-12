@@ -29,7 +29,7 @@ $("#registration_form").submit(function(e) {
     $('#register-ui').hide();
     $('#request-ui').show();
     var t = $(this).serializeArray();
-    var n = "submit.php";
+    var n = "functions/submit.php";
     $.ajax({
         url: n,
         type: "POST",

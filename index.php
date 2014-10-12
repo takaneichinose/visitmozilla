@@ -2,22 +2,24 @@
 <head>
 	<title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>
 	<meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
+	<meta http-equiv='X-UA-Compatible' content='IE=Edge'>
 	<link href="css/reset.css" media="all" rel="stylesheet" />
 	<link href="css/foundation.css" media="all" rel="stylesheet" />
 	<link href="css/foundation.min.css" media="all" rel="stylesheet" />
 	<link href="css/normalize.css" media="all" rel="stylesheet" />
 	<link href="css/main.css" media="all" rel="stylesheet" />
+  <link rel="stylesheet" href="css/jquery-ui.css">
   <!--
+  NOTE: Uncomment after development
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   -->
-    <link rel="stylesheet" href="css/jquery-ui.css">
 </head>
 <body>
 <!--
+NOTE: Uncomment after development
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
 -->
-
 <div id="wrapper">
     <div id="logo">
         <img src="images/mcs-logo.png" />
@@ -37,14 +39,39 @@
 	</div>
 </div>
 
-<!-- JS  -->
-<!--
+<!-- 
+NOTE: Uncomment after development
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
 -->
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
-<script src="js/script.js"></script>
-<!-- END -->
+<script src="js/visit.js"></script>
+<script src='https://login.persona.org/include.js'></script>
+<script>
+$(document).ready(function(){
+  navigator.id.watch({
+    onlogin: function(assertion){
+      $.ajax({
+        method: "POST",
+        url: 'functions/login.php',
+        data: {assertion: assertion},
+        success: function(resp){
+          var json_resp = JSON.parse(resp);
+          if(json_resp.success){
+            location.reload();
+          }
+        }
+      });
+    },
+  });
+
+  $('#login-button').on('click', function(e){
+    e.preventDefault();
+    console.log('login-button clicked!');
+    navigator.id.request();
+  });
+});
+</script>
 </body>
 </html>
