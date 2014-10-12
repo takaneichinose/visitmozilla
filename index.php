@@ -2,7 +2,11 @@
 <head>
 	<title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>
 	<meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
+	<meta http-equiv='X-UA-Compatible' content='IE=Edge'>
 	<link href="css/reset.css" media="all" rel="stylesheet" />
+	<link href="css/foundation.css" media="all" rel="stylesheet" />
+	<link href="css/foundation.min.css" media="all" rel="stylesheet" />
+	<link href="css/normalize.css" media="all" rel="stylesheet" />
 	<link href="css/main.css" media="all" rel="stylesheet" />
   <link rel="stylesheet" href="css/jquery-ui.css">
   <!--
@@ -21,26 +25,10 @@ NOTE: Uncomment after development
         <img src="images/mcs-logo.png" />
     </div>
 
-    <div class="context" id="thanks-ui">
-        <h1>Success!</h1>
-        <p>You are now registered. See you soon!</p>
-    </div>
-    
     <div class="context" id="register-ui">
         <h1>Welcome to Mozilla Community Space Manila!</h1>
-        <p>Please fill-up our Visitor Registration System. Thank you!</p>
-        <form method="post" id="visit_form">
-            <input type="email" id="email" name="email_address" placeholder="Email Addres" required />
-            <select id="isMozillian" name="is_mozillian" required>
-                <option value="" selected>Are you a Mozillian?</option>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
-            <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
-            <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />        
-            <!-- END -->
-            <input type="submit" id="submit" name="submit" value="Submit" />
-        </form>
+        <a href='visit.html' class='button large expand'>first time to visit Mozilla Community Space Manila?</a>
+        <a href='returnee_visitor.php' class='button large expand'>been here before?</a>
     </div>
 	
 	<div class="context" id="request-ui">
@@ -49,13 +37,39 @@ NOTE: Uncomment after development
 	</div>
 </div>
 
-<!--
+<!-- 
 NOTE: Uncomment after development
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
 -->
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
-<script src="js/returnee.js"></script>
+<script src="js/visit.js"></script>
+<script src='https://login.persona.org/include.js'></script>
+<script>
+$(document).ready(function(){
+  navigator.id.watch({
+    onlogin: function(assertion){
+      $.ajax({
+        method: "POST",
+        url: 'functions/login.php',
+        data: {assertion: assertion},
+        success: function(resp){
+          var json_resp = JSON.parse(resp);
+          if(json_resp.success){
+            location.reload();
+          }
+        }
+      });
+    },
+  });
+
+  $('#login-button').on('click', function(e){
+    e.preventDefault();
+    console.log('login-button clicked!');
+    navigator.id.request();
+  });
+});
+</script>
 </body>
 </html>

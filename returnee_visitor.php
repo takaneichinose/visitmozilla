@@ -1,3 +1,6 @@
+<?php
+  require_once 'functions/session.php';
+?>
 <!DOCTYPE html>
 <head>
 	<title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>
@@ -20,14 +23,39 @@ NOTE: Uncomment after development
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
 -->
 <div id="wrapper">
+    <?php if(!$is_logged_in) { ?>
+      <button class='button tiny right' id='login-button' style='margin-right: 10%;'>login</button>
+    <?php } else { ?>
+      <div id='user-settings' class='right' style='margin-right: 10%;'>
+      <a href='/visitmozilla/admin/visitor_profile.php?email=<?php echo $_SESSION['email']; ?>' id='email'><?php echo $_SESSION['email']; ?></a>
+        | &nbsp;
+        <a href='functions/logout.php' id='logout-button'>logout</a>
+      </div>
+    <?php } ?>
     <div id="logo">
         <img src="images/mcs-logo.png" />
     </div>
 
+    <div class="context" id="thanks-ui">
+        <h1>Success!</h1>
+        <p>You are now registered. See you soon!</p>
+    </div>
+    
     <div class="context" id="register-ui">
         <h1>Welcome to Mozilla Community Space Manila!</h1>
-        <a href='visit.html' class='button large expand'>first time to visit Mozilla Community Space Manila?</a>
-        <a href='returnee_visitor.html' class='button large expand'>been here before?</a>
+        <p>Please fill-up our Visitor Registration System. Thank you!</p>
+        <form method="post" id="visit_form">
+            <input type="email" id="email" name="email_address" placeholder="Email Addres" required />
+            <select id="isMozillian" name="is_mozillian" required>
+                <option value="" selected>Are you a Mozillian?</option>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+            <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
+            <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />        
+            <!-- END -->
+            <input type="submit" id="submit" name="submit" value="Submit" />
+        </form>
     </div>
 	
 	<div class="context" id="request-ui">
@@ -36,13 +64,13 @@ NOTE: Uncomment after development
 	</div>
 </div>
 
-<!-- 
+<!--
 NOTE: Uncomment after development
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
 -->
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
-<script src="js/script.js"></script>
+<script src="js/returnee.js"></script>
 </body>
 </html>
