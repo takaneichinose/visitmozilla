@@ -40,10 +40,12 @@ NOTE: Uncomment after development
         <h1>Success!</h1>
         <p>You are now registered. See you soon!</p>
     </div>
-    
+
+
     <div class="context" id="register-ui">
         <h1>Welcome to Mozilla Community Space Manila!</h1>
         <p>Please fill-up our Visitor Registration System. Thank you!</p>
+
         <form method="post" id="visit_form">
             <input type="email" id="email" name="email_address" placeholder="Email Addres" required />
             <select id="isMozillian" name="is_mozillian" required>
@@ -52,12 +54,12 @@ NOTE: Uncomment after development
                 <option value=0>No</option>
             </select>
             <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
-            <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />        
+            <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />
             <!-- END -->
             <input type="submit" id="submit" name="submit" value="Submit" />
         </form>
     </div>
-	
+
 	<div class="context" id="request-ui">
 		<h1>One moment, please.</h1>
 		<p>Just sending your request. This will just take a few seconds.</p>
@@ -72,5 +74,39 @@ NOTE: Uncomment after development
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
 <script src="js/returnee.js"></script>
+<script>
+$('#visitDate').datepicker({ minDate:0,maxDate:new Date(), dateFormat: "yy-mm-dd"});
+$('#visitTime').timepicker({timeFormat: "hh:mm tt"});
+$("#visit_form").submit(function(e) {
+    $('#register-ui').hide();
+    $('#request-ui').show();
+    var t = $(this).serializeArray();
+    var n = "functions/visit.php";
+    $.ajax({
+        url: n,
+        type: "POST",
+        data: t,
+		success: function(data)
+		{
+      console.log("DATA", data);
+			//$('#thanks-ui').show().delay(5000).fadeOut("slow");
+			//$('#register-ui').show();
+			//$('#request-ui').hide();
+            $('#thanks-ui').html(data);
+            $('#thanks-ui').show().delay(500);
+            $('#register-ui').show().delay(2000);
+		},
+		fail: function(data)
+		{
+			alert("Registration failed. Please try again.");
+			console.log(data);
+		}
+    });
+	this.reset();
+	e.preventDefault();
+	$('#request-ui').hide();
+	return false;
+});
+</script>
 </body>
 </html>

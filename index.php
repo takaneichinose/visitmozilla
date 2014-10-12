@@ -27,10 +27,12 @@ NOTE: Uncomment after development
 
     <div class="context" id="register-ui">
         <h1>Welcome to Mozilla Community Space Manila!</h1>
-        <a href='visit.html' class='button large expand'>first time to visit Mozilla Community Space Manila?</a>
-        <a href='returnee_visitor.php' class='button large expand'>been here before?</a>
+        <!--ADD AWESOME TEXT FOR BUTTONS-->
+        <a href='visit.html' class='button large expand'>First time to visit Mozilla Community Space Manila?</a>
+        <a href='returnee_visitor.html' class='button large expand'>Been here before?</a>
+
     </div>
-	
+
 	<div class="context" id="request-ui">
 		<h1>One moment, please.</h1>
 		<p>Just sending your request. This will just take a few seconds.</p>
