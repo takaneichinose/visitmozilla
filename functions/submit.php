@@ -1,5 +1,5 @@
 <?php
-include("config/config.php");
+include("../config/config.php");
 if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) )
 {
 
@@ -17,7 +17,7 @@ $date_registered = date('Y/m/d H:i:s'); // insert time stamp here
 
 
 //Visitors Log
-$first_visit = $_POST['first_visit'];
+$first_visit = true;
 $is_mozillian = $_POST['is_mozillian'];
 //Convert string to datetime
 $visit_date = $_POST['visit_date'];
