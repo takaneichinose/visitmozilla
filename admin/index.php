@@ -1,5 +1,6 @@
 <?php
 require_once '../functions/list_visitors.php';
+require_once '../functions/admin_session.php';
 ?>
 <!DOCTYPE html> <html>
 <head>
@@ -25,6 +26,7 @@ require_once '../functions/list_visitors.php';
 -->
 
 <div id="wrapper">
+    <a href='../functions/admin_logout.php' id='logout-button' class='right' style='margin-right: 10%;'>logout</a>
     <div id="logo">
         <img src="../images/mcs-logo.png" />
     </div>
