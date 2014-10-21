@@ -43,8 +43,8 @@ NOTE: Uncomment after development
 
 
     <div class="context" id="register-ui">
-        <h1>Welcome to Mozilla Community Space Manila!</h1>
-        <p>Please fill-up our Visitor Registration System. Thank you!</p>
+        <h1>It's nice to see you back.</h1>
+        <p>Please fill-out the following form</p>
 
         <form method="post" id="visit_form">
             <input type="email" id="email" name="email_address" placeholder="Email Addres" required />
@@ -57,6 +57,7 @@ NOTE: Uncomment after development
             <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />
             <!-- END -->
             <input type="submit" id="submit" name="submit" value="Submit" />
+			<a href='index.php' class='button small'>Take me back</a>
         </form>
     </div>
 

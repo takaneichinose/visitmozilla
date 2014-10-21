@@ -27,9 +27,10 @@ NOTE: Uncomment after development
 
     <div class="context" id="register-ui">
         <h1>Welcome to Mozilla Community Space Manila!</h1>
+		<p>Is this your first time to use this service?</p>
         <!--ADD AWESOME TEXT FOR BUTTONS-->
-        <a href='visit.html' class='button large expand'>First time to visit Mozilla Community Space Manila?</a>
-        <a href='returnee_visitor.html' class='button large expand'>Been here before?</a>
+        <a href='guest.html' class='button large expand'>Yes, I'm new here.</a>
+        <a href='returnee.php' class='button large expand'>No, I have already have used this before.</a>
 
     </div>
 
