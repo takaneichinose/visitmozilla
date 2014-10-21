@@ -30,7 +30,7 @@ NOTE: Uncomment after development
     </div>
 
     <div class="context" id="register-ui">
-        <h1>You're one step away to RSVP!</h1>
+        <h1>Welcome to Mozilla Space Manila!</h1>
         <p>Please fill-out the following form</p>
         <form method="post" id="registration_form">
             <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>

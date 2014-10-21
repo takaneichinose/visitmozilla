@@ -29,7 +29,7 @@ NOTE: Uncomment after development
         <h1>Welcome to Mozilla Community Space Manila!</h1>
 		<p>Is this your first time to use this service?</p>
         <!--ADD AWESOME TEXT FOR BUTTONS-->
-        <a href='guest.html' class='button large expand'>Yes, I'm new here.</a>
+        <a href='guest.php' class='button large expand'>Yes, I'm new here.</a>
         <a href='returnee.php' class='button large expand'>No, I have already have used this before.</a>
 
     </div>
