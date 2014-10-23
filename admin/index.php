@@ -137,7 +137,7 @@ $("#dateTo").datepicker({ maxDate:new Date(), dateFormat: "yy-mm-dd"});
     }
 
     $.ajax({
-      url:'/visitmozilla/functions/checkin.php',
+      url:'../functions/checkin.php',
       data: data,
       type:"POST",
       success: function(data){

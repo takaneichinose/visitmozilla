@@ -121,9 +121,9 @@ $(document).ready(function(){
         //$('#thanks-ui').show().delay(5000).fadeOut("slow");
         //$('#register-ui').show();
         //$('#request-ui').hide();
-              $('#thanks-ui').html(data);
+             $('#thanks-ui').html(data);
               $('#thanks-ui').show().delay(500);
-              $('#register-ui').show().delay(2000);
+             $('#register-ui').show().delay(2000);
       },
       fail: function(data)
       {

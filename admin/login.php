@@ -49,7 +49,7 @@
     //$('.alert-message').html("<img src='../img/loader.gif'>");
     $.ajax({
     type: "POST",
-    url: "/visitmozilla/functions/admin_login.php",
+    url: "../functions/admin_login.php",
     data: formData,
     success: function(resp){
       var json_resp = JSON.parse(resp);
