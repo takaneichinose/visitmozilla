@@ -30,7 +30,7 @@ NOTE: Uncomment after development
 		<p>Is this your first time to use this service?</p>
         <!--ADD AWESOME TEXT FOR BUTTONS-->
         <a href='guest.php' class='button large expand'>Yes, I'm new here.</a>
-        <a href='returnee.php' class='button large expand'>No, I have already have used this before.</a>
+        <a href='returnee.php' class='button large expand'>No, I had already used this before.</a>
 
     </div>
 
