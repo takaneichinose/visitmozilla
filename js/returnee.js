@@ -13,10 +13,14 @@ $("#visit_form").submit(function(e) {
         data: t,
 		success: function(data)
 		{
-      console.log("DATA", data);
-			$('#thanks-ui').show().delay(1000).fadeOut("slow");
-			$('#register-ui').show();
-			$('#request-ui').hide();
+      var resp = JSON.parse(data);
+      console.log("DATA", resp);
+      if (resp.success){
+        //$('#thanks-ui').show().delay(1000).fadeOut("slow");
+        $('#thanks-ui').html('<p>' + resp.reason + '</p>');
+        $('#thanks-ui').show();
+        $('#register-ui').show();
+      }
 		},
 		fail: function(data)
 		{
@@ -26,6 +30,5 @@ $("#visit_form").submit(function(e) {
     });
 	this.reset();
 	e.preventDefault();
-	$('#request-ui').hide();
 	return false;
 });
