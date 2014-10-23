@@ -21,7 +21,8 @@ $first_visit = true;
 $is_mozillian = $_POST['is_mozillian'];
 //Convert string to datetime
 $visit_date = $_POST['visit_date'];
-$visit_time = date("H:i:s", strtotime($_POST['visit_time']));
+$visit_time = date("H:i", strtotime($_POST['visit_time']));
+$v_date = date("F d, Y", strtotime($visit_date));
 echo $visit_date;
 echo strtotime($_POST['visit_time']);
 echo '<br/>';
@@ -67,7 +68,7 @@ $message = "
   </head>
   <body>
   <p>Hi there!
-This is to confirm that we have received your appointment request on .'$visit_date'.' '.'$visit_time'. at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
+This is to confirm that we have received your appointment request on $v_date $visit_time at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
   <br />
   <p>- Mozilla Community Space Manila Management</p>
 </body>
