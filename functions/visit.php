@@ -7,8 +7,8 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 $email_address = $_REQUEST['email_address'];
 $is_mozillian = $_REQUEST['is_mozillian'];
 $visit_date = $_REQUEST['visit_date'];
-$visit_time = date("H:i:s", strtotime($_REQUEST['visit_time']));
-
+$visit_time = date("h:i", strtotime($_REQUEST['visit_time']));
+$v_date = date("F d, Y", strtotime($visit_date));
 $select_visitor_query="SELECT * FROM visitors_info WHERE email_address='$email_address'";
 $execute_select_visitor_query=mysqli_query($db_connection, $select_visitor_query) or die(mysqli_error($db_connection));
 $info = mysqli_fetch_assoc($execute_select_visitor_query);
@@ -45,7 +45,7 @@ $message = "
   </head>
   <body>
   <p>Hi there!
-This is to confirm that we have received your appointment request on .'$visit_date'.' '.'$visit_time'. at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
+This is to confirm that we have received your appointment request on $v_date $visit_time at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
   <br />
   <p>- Mozilla Community Space Manila Management</p>
 </body>
