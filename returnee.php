@@ -16,8 +16,7 @@
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
   <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   -->
-</head>
-<body>
+</head> <body>
 <!--
 NOTE: Uncomment after development
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
