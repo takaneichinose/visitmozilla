@@ -46,18 +46,18 @@ echo $insert_visitors_log_query;
 /* EMAIL */
 // multiple recipients
 
-$to = '$email_address';
+$to = $email_address;
 // subject
 $subject = '[Mozilla Space Manila] Visitor Registration Confirmed';
 
-$message = '
+$message = "
  <html>
   <head>
     <title>RSVP Confirmed</title>
     <style>
     *
     {
-      font-family: "Open Sans", sans-serif;
+      font-family: 'Open Sans', sans-serif;
     }
 	p
 	{
@@ -67,12 +67,12 @@ $message = '
   </head>
   <body>
   <p>Hi there!
-This is to confirm that we have received your appointment request at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
+This is to confirm that we have received your appointment request on .'$visit_date'.' '.'$visit_time'. at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
   <br />
   <p>- Mozilla Community Space Manila Management</p>
 </body>
 </html>
-   ';
+   ";
 
 
 // To send HTML mail, the Content-type header must be set
