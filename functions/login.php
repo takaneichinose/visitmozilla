@@ -2,7 +2,7 @@
 require_once '../config/config.php';
 require_once 'session.php';
 $assertion = $_POST['assertion'];
-$audience = 'http://localhost/visitmozilla/';
+$audience = 'http://visit.mozillaph.org/';
 if (isset($assertion)){
   function verifyAssertion($assertion, $audience){
     $postdata='assertion=' . urlencode($assertion) . '&audience=' . urlencode($audience);
