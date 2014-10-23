@@ -24,18 +24,18 @@ $execute_insert_visitors_log_query = mysqli_query($db_connection, $insert_visito
 /* EMAIL */
 // multiple recipients
 
-$to = '$email_address';
+$to = $email_address;
 // subject
 $subject = '[Mozilla Space Manila] Visitor Registration Confirmed';
 
-$message = '
+$message = "
  <html>
   <head>
     <title>RSVP Confirmed</title>
     <style>
     *
     {
-      font-family: "Open Sans", sans-serif;
+      font-family: 'Open Sans', sans-serif;
     }
 	p
 	{
@@ -45,12 +45,12 @@ $message = '
   </head>
   <body>
   <p>Hi there!
-This is to confirm that we have received your appointment request at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
+This is to confirm that we have received your appointment request on .'$visit_date'.' '.'$visit_time'. at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
   <br />
   <p>- Mozilla Community Space Manila Management</p>
 </body>
 </html>
-   ';
+   ";
 
 
 // To send HTML mail, the Content-type header must be set
@@ -64,11 +64,13 @@ $headers .= 'From: Mozilla Philippines <info@mozillaphilippines.org>' . "\r\n";
 $retval = mail($to, $subject, $message, $headers);
 if( $retval == true )
    {
-      echo "Form has been submitted!";
+      $response = array('success' => true, 'reason' => 'Appoinment has been sent!');
+      echo json_encode($response);
    }
    else
    {
-      echo "There is a problem with your application. Please navigate back.";
+      $response = array('success' => true, 'reason' => 'Some problem with internet connection!');
+      echo json_encode($response);
    }
 
 
