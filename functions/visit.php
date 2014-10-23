@@ -13,8 +13,9 @@ $select_visitor_query="SELECT * FROM visitors_info WHERE email_address='$email_a
 $execute_select_visitor_query=mysqli_query($db_connection, $select_visitor_query) or die(mysqli_error($db_connection));
 $info = mysqli_fetch_assoc($execute_select_visitor_query);
 if (mysqli_num_rows($execute_select_visitor_query) == 0){
-    echo "<p>We detect that you dont have an account yet. You can register <a href='visit.html'>here</a></p>";
-  exit();
+      $response = array('success' => true, 'reason' => 'We detect that you dont have an account yet. You can register');
+      echo json_encode($response);
+      exit();
 }
 
 $insert_visitors_log_query = "INSERT INTO visitors_log(email_address, date_of_arrival, time_of_arrival, is_mozillian) VALUES('$email_address', '$visit_date','$visit_time','$is_mozillian')";

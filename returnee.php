@@ -16,8 +16,7 @@
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
   <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   -->
-</head>
-<body>
+</head> <body>
 <!--
 NOTE: Uncomment after development
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
@@ -104,38 +103,6 @@ $(document).ready(function(){
     navigator.id.request();
   });
 
-  $('#visitDate').datepicker({ minDate:0,maxDate:new Date(), dateFormat: "yy-mm-dd"});
-  $('#visitTime').timepicker({timeFormat: "hh:mm tt"});
-  $("#visit_form").submit(function(e) {
-      $('#register-ui').hide();
-      $('#request-ui').show();
-      var t = $(this).serializeArray();
-      var n = "functions/visit.php";
-      $.ajax({
-          url: n,
-          type: "POST",
-          data: t,
-      success: function(data)
-      {
-        console.log("DATA", data);
-        //$('#thanks-ui').show().delay(5000).fadeOut("slow");
-        //$('#register-ui').show();
-        //$('#request-ui').hide();
-             $('#thanks-ui').html(data);
-              $('#thanks-ui').show().delay(500);
-             $('#register-ui').show().delay(2000);
-      },
-      fail: function(data)
-      {
-        alert("Registration failed. Please try again.");
-        console.log(data);
-      }
-      });
-    this.reset();
-    e.preventDefault();
-    $('#request-ui').hide();
-    return false;
-  });
 });
 </script>
 </body>
