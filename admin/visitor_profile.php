@@ -2,6 +2,17 @@
 require_once '../config/config.php';
 
 $email = $_GET['email'];
+session_start();
+if (isset($_SESSION['email'])){
+  if($email != $_SESSION['email']){
+    header('Location: ../returnee.php');
+  }
+}
+else{
+  if(!isset($_SESSION['admin'])){
+    header('Location: login.php');
+  }
+}
 
 $select_visitor_query="SELECT * FROM visitors_info WHERE email_address='$email'";
 $execute_select_visitor_query=mysqli_query($db_connection, $select_visitor_query) or die(mysqli_error($db_connection));
