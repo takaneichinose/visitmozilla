@@ -26,7 +26,7 @@ NOTE: Uncomment after development
       <button class='button tiny right' id='login-button' style='margin-right: 10%;'>login</button>
     <?php } else { ?>
       <div id='user-settings' class='right' style='margin-right: 10%;'>
-      <a href='/visitmozilla/admin/visitor_profile.php?email=<?php echo $_SESSION['email']; ?>' id='email'><?php echo $_SESSION['email']; ?></a>
+      <a href='/admin/visitor_profile.php?email=<?php echo $_SESSION['email']; ?>' id='email'><?php echo $_SESSION['email']; ?></a>
         | &nbsp;
         <a href='functions/logout.php' id='logout-button'>logout</a>
       </div>
