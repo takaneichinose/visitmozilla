@@ -81,7 +81,7 @@ require_once '../functions/admin_session.php';
               </a>
             </td>
             <td colspan=2><?php echo $visitor['organization']; ?></td>
-            <td>
+            <td class='checked-in'>
             <?php
             echo date("M d,Y",strtotime($visitor['date_of_arrival']))."<br>";
             echo date("g:i a", strtotime($visitor['time_of_arrival']));
@@ -92,7 +92,7 @@ require_once '../functions/admin_session.php';
 
               $dt_chkin=$visitor['datetime_checked_in'];
               if(!empty($dt_chkin))
-              echo date("M d, Y g:i a", strtotime($dt_chkin));
+              echo date("M d, Y - g:i a", strtotime($dt_chkin));
               else
                 echo '';
 
@@ -141,13 +141,17 @@ $("#dateTo").datepicker({ maxDate:new Date(), dateFormat: "yy-mm-dd"});
       data: data,
       type:"POST",
       success: function(data){
-        if (that.text().trim() == 'checked-in') {
-          that.css('background', '#007095');
-          that.text('checkin');
-        }
-        else{
+        var datetime_check_in = JSON.parse(data);
+        console.log(datetime_check_in);
+        if(datetime_check_in.success){
           that.css('background', '#43AC6A');
           that.text('checked-in');
+          that.closest('td').prev('td').text(datetime_check_in.check_in_date);
+        }
+        else{
+          that.css('background', '#007095');
+          that.text('checkin');
+          that.closest('td').prev('td').text(datetime_check_in.check_in_date);
         }
       }
     });

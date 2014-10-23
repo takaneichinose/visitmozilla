@@ -75,38 +75,67 @@ NOTE: Uncomment after development
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
 <script src="js/returnee.js"></script>
+<script src='https://login.persona.org/include.js'></script>
 <script>
-$('#visitDate').datepicker({ minDate:0,maxDate:new Date(), dateFormat: "yy-mm-dd"});
-$('#visitTime').timepicker({timeFormat: "hh:mm tt"});
-$("#visit_form").submit(function(e) {
-    $('#register-ui').hide();
-    $('#request-ui').show();
-    var t = $(this).serializeArray();
-    var n = "functions/visit.php";
-    $.ajax({
-        url: n,
-        type: "POST",
-        data: t,
-		success: function(data)
-		{
-      console.log("DATA", data);
-			//$('#thanks-ui').show().delay(5000).fadeOut("slow");
-			//$('#register-ui').show();
-			//$('#request-ui').hide();
-            $('#thanks-ui').html(data);
-            $('#thanks-ui').show().delay(500);
-            $('#register-ui').show().delay(2000);
-		},
-		fail: function(data)
-		{
-			alert("Registration failed. Please try again.");
-			console.log(data);
-		}
-    });
-	this.reset();
-	e.preventDefault();
-	$('#request-ui').hide();
-	return false;
+$(document).ready(function(){
+  navigator.id.watch({
+    onlogin: function(assertion){
+      $.ajax({
+        method: "POST",
+        url: 'functions/login.php',
+        data: {assertion: assertion},
+        success: function(resp){
+          var json_resp = JSON.parse(resp);
+          console.log(json_resp);
+          if(json_resp.success){
+            location.reload();
+          }
+          else{
+            alert(json_resp.reason);
+          }
+        }
+      });
+    },
+  });
+
+  $('#login-button').on('click', function(e){
+    e.preventDefault();
+    console.log('login-button clicked!');
+    navigator.id.request();
+  });
+
+  $('#visitDate').datepicker({ minDate:0,maxDate:new Date(), dateFormat: "yy-mm-dd"});
+  $('#visitTime').timepicker({timeFormat: "hh:mm tt"});
+  $("#visit_form").submit(function(e) {
+      $('#register-ui').hide();
+      $('#request-ui').show();
+      var t = $(this).serializeArray();
+      var n = "functions/visit.php";
+      $.ajax({
+          url: n,
+          type: "POST",
+          data: t,
+      success: function(data)
+      {
+        console.log("DATA", data);
+        //$('#thanks-ui').show().delay(5000).fadeOut("slow");
+        //$('#register-ui').show();
+        //$('#request-ui').hide();
+              $('#thanks-ui').html(data);
+              $('#thanks-ui').show().delay(500);
+              $('#register-ui').show().delay(2000);
+      },
+      fail: function(data)
+      {
+        alert("Registration failed. Please try again.");
+        console.log(data);
+      }
+      });
+    this.reset();
+    e.preventDefault();
+    $('#request-ui').hide();
+    return false;
+  });
 });
 </script>
 </body>

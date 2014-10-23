@@ -48,31 +48,5 @@ NOTE: Uncomment after development
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
 <script src="js/visit.js"></script>
-<script src='https://login.persona.org/include.js'></script>
-<script>
-$(document).ready(function(){
-  navigator.id.watch({
-    onlogin: function(assertion){
-      $.ajax({
-        method: "POST",
-        url: 'functions/login.php',
-        data: {assertion: assertion},
-        success: function(resp){
-          var json_resp = JSON.parse(resp);
-          if(json_resp.success){
-            location.reload();
-          }
-        }
-      });
-    },
-  });
-
-  $('#login-button').on('click', function(e){
-    e.preventDefault();
-    console.log('login-button clicked!');
-    navigator.id.request();
-  });
-});
-</script>
 </body>
 </html>
