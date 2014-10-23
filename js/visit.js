@@ -37,7 +37,7 @@ $("#registration_form").submit(function(e) {
 		success: function(data)
 		{
       console.log("DATA", data);
-			$('#thanks-ui').show().delay(1000).fadeOut("slow");
+			$('#thanks-ui').show(0).delay(5000).fadeOut("slow");
 			$('#register-ui').show();
 			$('#request-ui').hide();
 		},

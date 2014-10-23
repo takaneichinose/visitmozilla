@@ -13,10 +13,11 @@ $("#visit_form").submit(function(e) {
         data: t,
 		success: function(data)
 		{
+      console.log(data);
       var resp = JSON.parse(data);
       console.log("DATA", resp);
       if (resp.success){
-        //$('#thanks-ui').show().delay(1000).fadeOut("slow");
+        $('#thanks-ui').show(0).delay(5000).fadeOut("slow");
         $('#thanks-ui').html('<p>' + resp.reason + '</p>');
         $('#thanks-ui').show();
         $('#register-ui').show();
