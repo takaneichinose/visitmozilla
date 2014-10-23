@@ -11,7 +11,7 @@ if (isset($username)){
   $found_admin = mysqli_fetch_assoc($execute_find_admin_query);
   $found_admin_email = $found_admin['email'];
   if($num_admin > 0){
-    $_SESSION['email'] = $found_admin_email;
+    $_SESSION['admin'] = $found_admin_email;
     $response = array('success' => true);
   }
   else{
