@@ -19,6 +19,7 @@ $("#visit_form").submit(function(e) {
       if (resp.success){
         $('#thanks-ui').show(0).delay(5000).fadeOut("slow");
         $('#thanks-ui').html('<p>' + resp.reason + '</p>');
+        $('#request-ui').hide();
         $('#thanks-ui').show();
         $('#register-ui').show();
       }
