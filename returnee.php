@@ -46,7 +46,7 @@ NOTE: Uncomment after development
         <p>Please fill-out the following form</p>
 
         <form method="post" id="visit_form">
-            <input type="email" id="email" name="email_address" placeholder="Email Addres" required />
+        <input type="email" <?php echo ($is_logged_in) ? 'disabled' : '';?> id="email" value="<?php echo ($is_logged_in) ? $_SESSION['email'] : ''; ?>" name="email_address" placeholder="Email Addres" required />
             <select id="isMozillian" name="is_mozillian" required>
                 <option value="" selected>Are you a Mozillian?</option>
                 <option value=1>Yes</option>
