@@ -5,7 +5,6 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 
 // Visitors Info.
 $email_address = $_REQUEST['email_address'];
-$is_mozillian = $_REQUEST['is_mozillian'];
 $visit_date = $_REQUEST['visit_date'];
 $visit_time = date("h:i", strtotime($_REQUEST['visit_time']));
 $v_date = date("F d, Y", strtotime($visit_date));
@@ -18,7 +17,7 @@ if (mysqli_num_rows($execute_select_visitor_query) == 0){
       exit();
 }
 
-$insert_visitors_log_query = "INSERT INTO visitors_log(email_address, date_of_arrival, time_of_arrival, is_mozillian) VALUES('$email_address', '$visit_date','$visit_time','$is_mozillian')";
+$insert_visitors_log_query = "INSERT INTO visitors_log(email_address, date_of_arrival, time_of_arrival) VALUES('$email_address', '$visit_date','$visit_time')";
 $execute_insert_visitors_log_query = mysqli_query($db_connection, $insert_visitors_log_query) or die(mysqli_error($db_connection));
 
 /* EMAIL */

@@ -47,15 +47,10 @@ NOTE: Uncomment after development
 
         <form method="post" id="visit_form">
         <input type="email" <?php echo ($is_logged_in) ? 'disabled' : '';?> id="email" value="<?php echo ($is_logged_in) ? $_SESSION['email'] : ''; ?>" name="email_address" placeholder="Email Addres" required />
-            <select id="isMozillian" name="is_mozillian" required>
-                <option value="" selected>Are you a Mozillian?</option>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
-            <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
-            <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />
-            <!-- END -->
-            <input type="submit" id="submit" name="submit" value="Submit" />
+        <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
+        <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />
+        <!-- END -->
+        <input type="submit" id="submit" name="submit" value="Submit" />
 			<a href='index.php' class='button small'>Take me back</a>
         </form>
     </div>
