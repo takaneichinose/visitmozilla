@@ -60,8 +60,8 @@ $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 // Additional headers
 $headers .= 'To:' . $info['first_name'] . ' ' . $info['last_name'] . '<' . $_REQUEST['email_address'] . '>' . "\r\n";
-$headers .= "Cc: Mozilla Philippines <info@mozillaphilippines.org>' . "\r\n";
-$headers .= 'From: Mozilla Philippines <info@mozillaphilippines.org>' . "\r\n";
+$headers .= "Cc: Mozilla Philippines <info@mozillaphilippines.org>" . "\r\n";
+$headers .= "From: Mozilla Philippines <info@mozillaphilippines.org>" . "\r\n";
 // Mail it
 $retval = mail($to, $subject, $message, $headers);
 if( $retval == true )
