@@ -24,6 +24,8 @@ $execute_insert_visitors_log_query = mysqli_query($db_connection, $insert_visito
 // multiple recipients
 
 $to = $email_address;
+$to .= "info@mozillaphilippines.org"; // CC mozillaph
+
 // subject
 $subject = '[Mozilla Space Manila] Visitor Registration Confirmed';
 
