@@ -23,7 +23,7 @@ $execute_insert_visitors_log_query = mysqli_query($db_connection, $insert_visito
 /* EMAIL */
 // multiple recipients
 
-$to = $email_address;
+$to = $email_address . ',';
 $to .= "info@mozillaphilippines.org";
 
 // subject
