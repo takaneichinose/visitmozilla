@@ -1,6 +1,6 @@
 <?php
 require_once '../functions/list_visitors.php';
-require_once '../functions/admin_session.php';
+#require_once '../functions/admin_session.php';
 ?>
 <!DOCTYPE html> <html>
 <head>
@@ -68,29 +68,29 @@ require_once '../functions/admin_session.php';
           </tr>
         </thead>
         <tbody>
-        <?php if(mysqli_num_rows($execute_select_all_visitors_query) == 0) { ?>
+        <?php if($users_count == 0) { ?>
           <tr>
             <td colspan=8 style='text-align: center;'>No Records Found</td>
           </tr>
         <?php } ?>
-        <?php while($visitor = mysqli_fetch_array($execute_select_all_visitors_query)) { ?>
+        <?php foreach($users as $user) { ?>
           <tr>
             <td colspan='2'>
-            <a href="/admin/visitor_profile.php?email=<?php echo $visitor['email_address']; ?>">
-                <?php echo $visitor['salutation'].'. '.$visitor['first_name'].' '.$visitor['last_name']; ?>
+            <a href="/admin/visitor_profile.php?email=<?php echo $user['email_address']; ?>">
+                <?php echo $user['salutation'].'. '.$user['first_name'].' '.$user['last_name']; ?>
               </a>
             </td>
-            <td colspan=2><?php echo $visitor['organization']; ?></td>
+            <td colspan=2><?php echo $user['organization']; ?></td>
             <td class='checked-in'>
             <?php
-            echo date("M d,Y",strtotime($visitor['date_of_arrival']))."<br>";
-            echo date("g:i a", strtotime($visitor['time_of_arrival']));
+            echo date("M d,Y",strtotime($user['date_of_arrival']))."<br>";
+            echo date("g:i a", strtotime($user['time_of_arrival']));
             ?>
             </td>
             <td>
               <?php
 
-              $dt_chkin=$visitor['datetime_checked_in'];
+              $dt_chkin=$user['datetime_checked_in'];
               if(!empty($dt_chkin))
               echo date("M d, Y - g:i a", strtotime($dt_chkin));
               else
@@ -99,12 +99,12 @@ require_once '../functions/admin_session.php';
               ?>
             </td>
             <td style='text-align:center;'>
-              <?php if($visitor['check_in_status'] == false){ ?>
-                <button class='checkin tiny' data-id='<?php echo $visitor['log_id']; ?>'>
+              <?php if($user['check_in_status'] == false){ ?>
+                <button class='checkin tiny' data-id='<?php echo $user['log_id']; ?>'>
                   Checkin
                 </button>
               <?php }else{ ?>
-                <button class='checkin tiny success' data-id='<?php echo $visitor['log_id']; ?>'>
+                <button class='checkin tiny success' data-id='<?php echo $user['log_id']; ?>'>
                   checked-in
                 </button>
               <?php } ?>

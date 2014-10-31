@@ -39,7 +39,7 @@ NOTE: Uncomment after development
 
     <div class="context" id="thanks-ui">
         <h1>Success!</h1>
-        <p>You are now registered. See you soon!</p>
+        <p>Your appointment has been set. See you!</p>
     </div>
 
 
@@ -52,7 +52,7 @@ NOTE: Uncomment after development
         <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
         <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />
         <!-- END -->
-        <input type="submit" id="submit" name="submit" value="Submit" />
+        <input type="submit" id="submit" name="returnee" value="Submit" />
 			<a href='index.php' class='button small'>Take me back</a>
         </form>
     </div>

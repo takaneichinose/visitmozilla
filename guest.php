@@ -35,8 +35,7 @@ NOTE: Uncomment after development
         <h1>Welcome to Mozilla Community Space Manila!</h1>
         <p>Please fill-out the following form</p>
         <form method="post" id="registration_form">
-            <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
-            <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />        
+            <h4>Personal Information</h4>
             <select name="salutation" id="salutation" required>
                 <option value="" selected>Title</option>
                 <option value="Mr.">Mr.</option>
@@ -63,8 +62,11 @@ NOTE: Uncomment after development
                 <option value="fsa">Firefox Student Ambassador</option>
                 <option value="mozillian">Vouched Mozillian</option>
             </select>
+            <h4>Appointment Information</h4>
+            <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
+            <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />        
             <!-- END -->
-            <input type="submit" id="submit" name="submit" value="Register" />
+            <input type="submit" id="submit" name="register" value="Register" />
 			<a href='index.php' class='button small'>Take me back</a>
         </form>
     </div>
@@ -82,6 +84,6 @@ NOTE: Uncomment after development
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
-<script src="js/visit.js"></script>
+<script src="js/guest.js"></script>
 </body>
 </html>
