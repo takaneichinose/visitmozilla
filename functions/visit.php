@@ -47,7 +47,7 @@ $message = "
     </style>
   </head>
   <body>
-  <p>Hi $fname!<br />
+  <p>Hi $fname!<br /><br />
 This is to confirm that we have received your appointment request on $v_date $visit_time at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
   <br />
   <p>- Mozilla Community Space Manila Management</p>
