@@ -20,6 +20,8 @@ if (mysqli_num_rows($execute_select_visitor_query) == 0){
 $insert_visitors_log_query = "INSERT INTO visitors_log(email_address, date_of_arrival, time_of_arrival) VALUES('$email_address', '$visit_date','$visit_time')";
 $execute_insert_visitors_log_query = mysqli_query($db_connection, $insert_visitors_log_query) or die(mysqli_error($db_connection));
 
+$fname = ucfirst($info['first_name']);
+
 /* EMAIL */
 // multiple recipients
 
@@ -45,7 +47,7 @@ $message = "
     </style>
   </head>
   <body>
-  <p>Hi there!
+  <p>Hi $fname!<br />
 This is to confirm that we have received your appointment request on $v_date $visit_time at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
   <br />
   <p>- Mozilla Community Space Manila Management</p>
