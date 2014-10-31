@@ -10,7 +10,9 @@
 	<link href="css/foundation.min.css" media="all" rel="stylesheet" />
 	<link href="css/normalize.css" media="all" rel="stylesheet" />
 	<link href="css/main.css" media="all" rel="stylesheet" />
-  <link rel="stylesheet" href="css/jquery-ui.css">
+	<link href="css/jquery-ui.min.css" media="all" rel="stylesheet" />
+	<link href="css/jquery-ui.structure.min.css" media="all" rel="stylesheet" />
+	<link href="css/jquery-ui.theme.min.css" media="all" rel="stylesheet" />
   <!--
   NOTE: Uncomment after development
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
