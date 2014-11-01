@@ -5,6 +5,6 @@ require("../class/database.class.php");
 $db = new Database();
 $user = new User($db);
 
-$users = $user->show_all();
+$users = $user->all_appointments();
 $users_count = count($users);
 ?>

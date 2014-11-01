@@ -46,15 +46,14 @@
     e.preventDefault();
 
     var formData = $('#loginForm').serialize();
-    //$('.alert-message').html("<img src='../img/loader.gif'>");
     $.ajax({
     type: "POST",
-    url: "/functions/admin_login.php",
+    url: "/visitmozilla/functions/login.php",
     data: formData,
-    success: function(resp){
-      var json_resp = JSON.parse(resp);
-      console.log(json_resp);
-      if(!json_resp.success){
+    success: function(data){
+      var resp = JSON.parse(data);
+      console.log(resp);
+      if(!resp.success){
         $('#loginForm').trigger('reset');
       }
       else{

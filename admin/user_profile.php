@@ -1,22 +1,5 @@
 <?php
-require_once '../config/config.php';
-
-$email = $_GET['email'];
-session_start();
-if (isset($_SESSION['email'])){
-  if($email != $_SESSION['email']){
-    header('Location: ../returnee.php');
-  }
-}
-else{
-  if(!isset($_SESSION['admin'])){
-    header('Location: login.php');
-  }
-}
-
-$select_visitor_query="SELECT * FROM visitors_info WHERE email_address='$email'";
-$execute_select_visitor_query=mysqli_query($db_connection, $select_visitor_query) or die(mysqli_error($db_connection));
-$info = mysqli_fetch_assoc($execute_select_visitor_query);
+require("../functions/profile.php");
 ?>
 <!DOCTYPE html>
 <html> 
@@ -47,17 +30,17 @@ $info = mysqli_fetch_assoc($execute_select_visitor_query);
     <h1 class='text-center'>MozillaSpaceMNL Visitors</h1>
     </div>
     <div id='visitor-info' style='background:#fff; width: 500px; margin:auto; padding: 10px;'>
-    <b>salutation:</b> <?php echo $info['salutation']; ?><br/>
-    <b>first name:</b> <?php echo $info['first_name']; ?><br/>
-    <b>last name:</b> <?php echo $info['last_name']; ?><br/>
-    <b>email address:</b> <?php echo $info['email_address']; ?><br/>
-    <b>twitter handler:</b> <?php echo $info['twitter_handler']; ?><br/>
-    <b>mobile number:</b> <?php echo $info['mobile_number']; ?><br/>
-    <b>organization:</b> <?php echo $info['organization']; ?><br/>
-    <b>position:</b> <?php echo $info['position']; ?><br/>
-    <b>mozillian type:</b> <?php echo $info['mozillian_type']; ?><br/>
-    <b>date registered:</b> <?php echo $info['date_registered']; ?><br/>
-    </div>
+    <b>salutation:</b> <?php echo $user['salutation']; ?><br/>
+    <b>first name:</b> <?php echo $user['first_name']; ?><br/>
+    <b>last name:</b> <?php echo $user['last_name']; ?><br/>
+    <b>email address:</b> <?php echo $user['email_address']; ?><br/>
+    <b>twitter handle:</b> <?php echo $user['twitter_handler']; ?><br/>
+    <b>mobile number:</b> <?php echo $user['mobile_number']; ?><br/>
+    <b>organization:</b> <?php echo $user['organization']; ?><br/>
+    <b>position:</b> <?php echo $user['position']; ?><br/>
+    <b>mozillian type:</b> <?php echo $user['mozillian_type']; ?><br/>
+    <b>date registered:</b> <?php echo date("M d, Y - g:i a", strtotime($user['date_registered'])); ?><br/>
+    </div
 
 </div>
 

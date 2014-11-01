@@ -1,11 +1,11 @@
 <?php
-require_once '../config/config.php';
+require("../class/user.class.php");
+require("../class/database.class.php");
 
-$email = $_GET['email'];
+$db = new Database();
+$users = new User($db);
 
-$select_visitor_query="SELECT * FROM visitors_info WHERE email_address='$email'";
-$execute_select_visitor_query=mysqli_query($db_connection, $select_visitor_query) or die(mysqli_error($db_connection));
-$info = mysqli_fetch_assoc($execute_select_visitor_query);
+$id = $_REQUEST['id'];
+$user = $users->select_user($id);
 
-header('location: ../admin/visitor_profile.php');
 ?>
