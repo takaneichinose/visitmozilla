@@ -54,7 +54,7 @@ This is to confirm that we have received your appointment request on $v_date $vi
 	<p>Roof Deck, Molave Building,<br />
 	2231 Chino Roces Ave. (Pasong Tamo),<br />
 	Makati City, Philippines<br />
-	<a href='http://www.mozspacemnl.org'>http://www.mozspacemnl.org</a><p>
+	<a href='http://www.mozspacemnl.org'>http://www.mozspacemnl.org</a></p>
 </body>
 </html>
    ";
