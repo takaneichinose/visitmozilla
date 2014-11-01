@@ -51,8 +51,8 @@ $message = "
 This is to confirm that we have received your appointment request on $v_date $visit_time at the Mozilla Community Space Manila. Thank you for using our online appointment service! <br />We are excited to see you!</p>
   <br /><br />
     <p>Mozilla Community Space Manila (MozSpaceMNL)<br />
-	<p>Roof Deck, Molave Building,<br />
-	2231 Chino Roces Ave. (Pasong Tamo),<br />
+	<p>Roof Deck, Molave Building,
+	2231 Chino Roces Ave. (Pasong Tamo),
 	Makati City, Philippines<p><br />
 	<a href='http://www.mozspacemnl.org'>http://www.mozspacemnl.org</a><p>
 </body>
