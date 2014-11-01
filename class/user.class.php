@@ -8,7 +8,7 @@ class User{
   }
 
   public function is_user($email_address){
-    return $this->is_register($email_address);
+    return $this->is_registered($email_address);
   }
 
   public function is_admin($username){
@@ -44,9 +44,12 @@ class User{
     $statement = $this->conn->prepare($sql);
     $statement->execute(array(':salutation' => $personal_info['salutation'], ':first_name' => $personal_info['first_name'],
                            ':last_name' => $personal_info['last_name'], ':email_address' => $personal_info['email_address'],
-                           ':twitter_handler' => $personal_info['twitter_handler'], ':organization' => $personal_info['organization'],
-                           ':position' => $personal_info['position'], ':mozillian_type' => $personal_info['mozillian_type'],
-                           ':mobile_number' => $personal_info['mobile_number'], ':date_registered' => $personal_info['date_registered']));
+                           ':twitter_handler' => $personal_info['twitter_handler'],
+                           ':organization' => $personal_info['organization'],
+                           ':position' => $personal_info['position'],
+                           ':mozillian_type' => $personal_info['mozillian_type'],
+                           ':mobile_number' => $personal_info['mobile_number'],
+                           ':date_registered' => $personal_info['date_registered']));
   }
 
 
@@ -83,17 +86,17 @@ class User{
     return $result;
   }
 
-  public function select_admin($username, $password){
+  public function verify_admin($username, $password){
     $sql = "SELECT * FROM admins WHERE username = :username AND password = :password";
     $statement = $this->conn->prepare($sql);
     $statement->execute(array(':username' => $username, ':password' => $password));
-    $result = $statement->fetch();
+    $count = $statement->fetchColumn();
 
-    return $result;
-  }
-
-  public function hash_password($password){
-    return password_hash($password);
+    if($count > 0){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   public function select_appointment($id){

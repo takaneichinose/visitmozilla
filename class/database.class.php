@@ -2,6 +2,8 @@
 date_default_timezone_set("Asia/Manila");
 class Database{
   # set variables here.
+  # Change the values for production, these
+  # are for local local testing only.
   private static $dbName = 'visitmozilla';
   private static $host = 'localhost';
   private static $dbUsername = 'root';
