@@ -13,17 +13,15 @@
 	<link href="css/jquery-ui.min.css" media="all" rel="stylesheet" />
 	<link href="css/jquery-ui.structure.min.css" media="all" rel="stylesheet" />
 	<link href="css/jquery-ui.theme.min.css" media="all" rel="stylesheet" />
-  <!--
-  NOTE: Uncomment after development
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
   <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  -->
 </head> <body>
-<!--
-NOTE: Uncomment after development
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
--->
+
 <div id="wrapper">
+	 <div id="logo">
+        <img src="images/mcs-logo.png" />
+    </div>
     <?php if(!$is_logged_in) { ?>
       <button class='button tiny right' id='login-button' style='margin-right: 10%;'>login</button>
     <?php } else { ?>
@@ -33,9 +31,6 @@ NOTE: Uncomment after development
         <a href='functions/logout.php' id='logout-button'>logout</a>
       </div>
     <?php } ?>
-    <div id="logo">
-        <img src="images/mcs-logo.png" />
-    </div>
 
     <div class="context" id="thanks-ui">
         <h1>Success!</h1>
@@ -48,7 +43,7 @@ NOTE: Uncomment after development
         <p>Please fill-out the following form</p>
 
         <form method="post" id="visit_form">
-        <input type="email" <?php echo ($is_logged_in) ? 'disabled' : '';?> id="email" value="<?php echo ($is_logged_in) ? $_SESSION['email'] : ''; ?>" name="email_address" placeholder="Email Addres" required />
+        <input type="email" <?php echo ($is_logged_in) ? 'disabled' : '';?> id="email" value="<?php echo ($is_logged_in) ? $_SESSION['email'] : ''; ?>" name="email_address" placeholder="Email Address" required />
         <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
         <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />
         <!-- END -->
@@ -59,14 +54,12 @@ NOTE: Uncomment after development
 
 	<div class="context" id="request-ui">
 		<h1>One moment, please.</h1>
-		<p>Just sending your request. This will just take a few seconds.</p>
+		<p>Sending your request. This won't take much time.</p>
 	</div>
 </div>
 
-<!--
-NOTE: Uncomment after development
+
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
--->
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
