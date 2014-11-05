@@ -9,17 +9,11 @@
 	<link href="css/normalize.css" media="all" rel="stylesheet" />
 	<link href="css/main.css" media="all" rel="stylesheet" />
   <link rel="stylesheet" href="css/jquery-ui.css">
-  <!--
-  NOTE: Uncomment after development
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
   <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  -->
 </head>
 <body>
-<!--
-NOTE: Uncomment after development
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
--->
 <div id="wrapper">
     <div id="logo">
         <img src="images/mcs-logo.png" />
@@ -40,10 +34,7 @@ NOTE: Uncomment after development
 	</div>
 </div>
 
-<!-- 
-NOTE: Uncomment after development
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
--->
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>

@@ -10,17 +10,12 @@
 	<link href="css/jquery-ui.min.css" media="all" rel="stylesheet" />
 	<link href="css/jquery-ui.structure.min.css" media="all" rel="stylesheet" />
 	<link href="css/jquery-ui.theme.min.css" media="all" rel="stylesheet" />
-  <!--
-  NOTE: Uncomment after development
 	<link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
   <link href='http://fonts.googleapis.com/css?family=Fira+Sans|Open+Sans|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  -->
 </head>
 <body>
-<!--
-NOTE: Uncomment after development
 <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
--->
+
 <div id="wrapper">
     <div id="logo">
         <img src="images/mcs-logo.png" />
@@ -46,7 +41,7 @@ NOTE: Uncomment after development
             </select>  
             <input type="text" id="fName" name="first_name" placeholder="First Name" required />
             <input type="text" id="lName" name="last_name" placeholder="Last Name" required />
-            <input type="email" id="email" name="email_address" placeholder="Email Addres" required />
+            <input type="email" id="email" name="email_address" placeholder="Email Address" required />
 			<input type="text" id="twitter" name="twitter_handler" placeholder="Twitter Handle" required />
             <input type="text" id="contact" name="mobile_number" placeholder="Mobile Number" required />
             <input type="text" id="organization" name="organization" placeholder="School/Company/Organization" required />
@@ -73,14 +68,12 @@ NOTE: Uncomment after development
 	
 	<div class="context" id="request-ui">
 		<h1>One moment, please.</h1>
-		<p>Just sending your request. This will just take a few seconds.</p>
+		<p>Sending your request. This won't take much time.</p>
 	</div>
 </div>
 
-<!--
-NOTE: Uncomment after development
+
 <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
--->
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker.js"></script>
