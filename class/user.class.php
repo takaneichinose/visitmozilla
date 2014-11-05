@@ -77,10 +77,19 @@ class User{
     return $result;
   }
 
-  public function select_user($id){
+  public function find_by_id($id){
     $sql = "SELECT * FROM visitors_info WHERE visitor_id = :id";
     $statement = $this->conn->prepare($sql);
     $statement->execute(array(':id' => $id));
+    $result = $statement->fetch();
+
+    return $result;
+  }
+
+  public function find_by_email($email_address){
+    $sql = "SELECT * FROM visitors_info WHERE email_address = :email_address";
+    $statement = $this->conn->prepare($sql);
+    $statement->execute(array(':email_address' => $email_address));
     $result = $statement->fetch();
 
     return $result;
