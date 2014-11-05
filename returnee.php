@@ -26,7 +26,7 @@
       <button class='button tiny right' id='login-button' style='margin-right: 10%;'>login</button>
     <?php } else { ?>
       <div id='user-settings' class='right' style='margin-right: 10%;'>
-      <a href='<?php echo dirname('__FILE__');?>/admin/user_profile.php?id=<?php echo $user['visitor_id']; ?>' id='email'><?php echo $_SESSION['user']; ?></a>
+      <a href='<?php echo dirname('__FILE__');?>/admin/user_profile.php?id=<?php echo $user['visitor_id']; ?>' id='email'><?php echo $user['email_address']; ?></a>
         | &nbsp;
         <a href='functions/logout.php' id='logout-button'>logout</a>
       </div>
@@ -43,7 +43,7 @@
         <p>Please fill-out the following form</p>
 
         <form method="post" id="visit_form">
-        <input type="email" <?php echo ($is_logged_in) ? 'disabled' : '';?> id="email" value="<?php echo ($is_logged_in) ? $_SESSION['user'] : ''; ?>" name="email_address" placeholder="Email Addres" required />
+        <input type="email" <?php echo ($is_logged_in) ? 'disabled' : '';?> id="email" value="<?php echo ($is_logged_in) ? $user['email_address'] : ''; ?>" name="email_address" placeholder="Email Addres" required />
         <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
         <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />
         <!-- END -->

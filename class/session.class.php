@@ -8,6 +8,9 @@ class Session{
     $this->user = $user;
   }
 
+  # Check if admin is in session
+  #
+  # return boolean
   public function is_admin(){
     if(!isset($_SESSION['admin'])){
       return false;
@@ -16,6 +19,9 @@ class Session{
     return true;
   }
 
+  # Check if user is in session
+  #
+  # return boolean
   public function is_user(){
     if(!isset($_SESSION['user'])){
       return false;
@@ -24,11 +30,17 @@ class Session{
     return true;
   }
 
+  # destroy current session
   public function logout(){
     session_unset();
     session_destroy();
   }
 
+  # Login admin user to admin page.
+  #
+  # paramaters: username(string), password(string)
+  #
+  # return boolean
   public function admin_login($username, $password){
     if(!$this->user->is_admin($username)){
       return false;
@@ -44,6 +56,11 @@ class Session{
     return true;
   }
 
+  # Login user to user page.
+  #
+  # paramaters: email address(string)
+  #
+  # return boolean
   public function user_login($email_address){
     if(!$this->user->is_registered($email_address)){
       return false;
@@ -54,6 +71,12 @@ class Session{
     return true;
   }
 
+  # verify email address using persona,
+  # uses CURL to send request.
+  #
+  # paramaters: assertion(string), $audience(string)
+  #
+  # return object
   public function verify_assertion($assertion, $audience){
     $postdata='assertion=' . urlencode($assertion) . '&audience=' . urlencode($audience);
 

@@ -1,10 +1,14 @@
 <?php
-require("../class/user.class.php");
-require("../class/database.class.php");
+define('__ROOT__', dirname(dirname(__FILE__)));
+require(__ROOT__.'/class/user.class.php');
+require(__ROOT__.'/class/database.class.php');
 
+# Initialize classes
 $db = new Database();
 $user = new User($db);
 
+# configure variables to array, thi makes
+# it easy to pass it as parameters.
 $personal_info = array(
   'salutation' => $_POST['salutation'],
   'first_name' => $_POST['first_name'],
@@ -25,6 +29,8 @@ $appointment_info = array(
   'visit_date' => date("F d, Y", strtotime($_POST['visit_date'])),
 );
 
+# Check if user is not yet registered. if yes, create new user and create new appointment.
+# if user already exist, will send message about the next action.
 if ($user->is_registered($personal_info['email_address'])){
   $response = array('success' => false, 'reason' => 'We detect that you have already an account. You can set schedule <a href="returnee.php">here</a> first.');
   echo json_encode($response);
@@ -36,9 +42,6 @@ else{
   $response = array('success' => true, 'reason' => 'Transaction successful.');
   echo json_encode($response);
 }
-
-$db->disconnect();
-
 
 /* EMAIL */
 // multiple recipients

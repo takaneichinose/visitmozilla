@@ -7,10 +7,21 @@ class User{
     $this->conn = $db->connect();
   }
 
+  
+  # Check if user is user.
+  #
+  # paramaters: email_address(string)
+  #
+  # return boolean
   public function is_user($email_address){
     return $this->is_registered($email_address);
   }
 
+  # Check if user is admin.
+  #
+  # paramaters: username(string)
+  #
+  # return boolean
   public function is_admin($username){
     $sql = "SELECT COUNT(username) FROM admins WHERE username = :username";
     $statement = $this->conn->prepare($sql);
@@ -24,6 +35,11 @@ class User{
     }
   }
 
+  # Check if user is registered.
+  #
+  # paramaters: email address(string)
+  #
+  # return boolean
   public function is_registered($email_address){
     $sql = "SELECT COUNT(email_address) FROM visitors_info WHERE email_address = :email";
     $statement = $this->conn->prepare($sql);
@@ -37,6 +53,11 @@ class User{
     }
   }
 
+  # Register new user.
+  #
+  # paramaters: personal_info(array)
+  #
+  # return none
   public function register($personal_info){
     $sql = "INSERT INTO visitors_info(salutation, first_name, last_name, email_address, twitter_handler, organization,
             position, mozillian_type, mobile_number, date_registered) VALUES(:salutation, :first_name, :last_name,
@@ -52,7 +73,11 @@ class User{
                            ':date_registered' => $personal_info['date_registered']));
   }
 
-
+  # Add new appointment.
+  #
+  # paramaters: appointment_info(array)
+  #
+  # return none
   public function add_appointment($appointment_info){
     $sql = "INSERT INTO visitors_appointment(email_address, first_visit, date_of_arrival, time_of_arrival)
             VALUES(:email_address, :first_visit, :date_of_arrival, :time_of_arrival)";
@@ -63,6 +88,9 @@ class User{
                               ':time_of_arrival' => $appointment_info['visit_time']));
   }
 
+  # Get all appointments.
+  #
+  # return array
   public function all_appointments(){
     $sql = "SELECT visitors_info.visitor_id, visitors_info.first_name, visitors_info.last_name, visitors_info.email_address,
             visitors_info.organization, visitors_info.salutation, visitors_appointment.appointment_id,
@@ -77,6 +105,11 @@ class User{
     return $result;
   }
 
+  # Get specific user by id.
+  #
+  # parameters: id(integer)
+  #
+  # return array
   public function find_by_id($id){
     $sql = "SELECT * FROM visitors_info WHERE visitor_id = :id";
     $statement = $this->conn->prepare($sql);
@@ -86,6 +119,11 @@ class User{
     return $result;
   }
 
+  # Get specific user by email address.
+  #
+  # parameters: email address(string)
+  #
+  # return array
   public function find_by_email($email_address){
     $sql = "SELECT * FROM visitors_info WHERE email_address = :email_address";
     $statement = $this->conn->prepare($sql);
@@ -95,6 +133,11 @@ class User{
     return $result;
   }
 
+  # Verify if admin exist.
+  #
+  # parameters: username(string), password(string)
+  #
+  # return boolean
   public function verify_admin($username, $password){
     $sql = "SELECT * FROM admins WHERE username = :username AND password = :password";
     $statement = $this->conn->prepare($sql);
@@ -108,6 +151,11 @@ class User{
     }
   }
 
+  # Select specific appointment.
+  #
+  # parameters: id(integer)
+  #
+  # return array
   public function select_appointment($id){
     $sql = "SELECT * FROM visitors_appointment WHERE appointment_id = :id";
     $statement = $this->conn->prepare($sql);
@@ -120,6 +168,12 @@ class User{
   # NOTE: Need to optimization. Set datetime of checkin to
   # 0000-00-00 00:00:00 if check_in_status is false else
   # set date to current time.
+  #
+  # Check in user.
+  #
+  # parameters: id(integer)
+  #
+  # return array
   public function check_in($id){
     $appointment = $this->select_appointment($id);
 

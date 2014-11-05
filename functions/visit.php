@@ -1,10 +1,14 @@
 <?php
-require("../class/user.class.php");
-require("../class/database.class.php");
+define('__ROOT__', dirname(dirname(__FILE__)));
+require(__ROOT__.'/class/user.class.php');
+require(__ROOT__.'/class/database.class.php');
 
+# Initialize classess
 $db = new Database();
 $user = new User($db);
 
+# configure variables to array, thi makes
+# it easy to pass it as parameters.
 $appointment_info = array(
   'email_address' => $_POST['email_address'],
   'first_visit' => false,
@@ -12,6 +16,7 @@ $appointment_info = array(
   'visit_date' => date("F d, Y", strtotime($_POST['visit_date'])),
 );
 
+# check if user is registered, if yes create appointment, if not send message for next action.
 if (!$user->is_registered($appointment_info['email_address'])){
   $response = array('success' => false, 'reason' => 'We detect that you dont have an account yet. Please register <a href="guest.php">here</a> first.');
   echo json_encode($response);
@@ -23,7 +28,6 @@ else{
   echo json_encode($response);
 }
 
-$db->disconnect();
 
 /* EMAIL */
 // multiple recipients

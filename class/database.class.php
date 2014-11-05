@@ -13,6 +13,9 @@ class Database{
   public function __construct(){
   }
 
+  # Connect to the database, use PDO as database API
+  #
+  # return database connection
   public function connect(){
     if(self::$conn == null){
       try{
