@@ -13,10 +13,10 @@ $session = new Session($user);
 # redirect to specified page.
 if($session->is_admin()){
   $session->logout();
-  header('Locatiion: login.php');
+  header('Location: ../admin/login.php');
 }
 else{
   $session->logout();
-  header('Locatiion: index.php');
+  header('Location: ../index.php');
 }
 ?>
