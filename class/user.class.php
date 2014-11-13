@@ -184,7 +184,7 @@ class User{
       $status = true;
     }
 
-    $sql = "UPDATE visitors_appointment SET check_in_status = :status, datetime_checked_in = NOW()
+    $sql = "UPDATE visitors_appointment SET check_in_status = :status, datetime_checked_in = CONVERT_TZ(NOW(), '-02:00', '+12:00')
             WHERE appointment_id = :id";
     $statement = $this->conn->prepare($sql);
     $statement->execute(array(':status' => $status, ':id' => $id));
