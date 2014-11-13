@@ -2,8 +2,7 @@
 <head>
 	<title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>
 	<meta name="viewport" content="width=device-width,user-scalable:no, initial-scale:1">
-	<link href="../css/reset.css" media="all" rel="stylesheet" />
-	<link href="../css/foundation.css" media="all" rel="stylesheet" />
+	<link href="../css/reset.css" media="all" rel="stylesheet" /> <link href="../css/foundation.css" media="all" rel="stylesheet" />
 	<link href="../css/foundation.min.css" media="all" rel="stylesheet" />
 	<link href="../css/normalize.css" media="all" rel="stylesheet" />
   <link href="../css/main.css" media="all" rel="stylesheet" />
@@ -48,7 +47,7 @@
     var formData = $('#loginForm').serialize();
     $.ajax({
     type: "POST",
-    url: "/visitmozilla/functions/login.php",
+    url: "/functions/login.php",
     data: formData,
     success: function(data){
       var resp = JSON.parse(data);
