@@ -134,7 +134,7 @@ $("#dateTo").datepicker({ maxDate:new Date(), dateFormat: "yy-mm-dd"});
       id: $(this).attr('data-id')
     }
     $.ajax({
-      url:'../functions/checkin.php',
+      url: '/functions/checkin.php',
       data: data,
       type:"POST",
       success: function(data){
