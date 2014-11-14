@@ -1,46 +1,52 @@
 <?php 
-require_once '../config/config.php';
-require_once 'session.php';
-$assertion = $_POST['assertion'];
-$audience = 'http://visit.mozillaph.org/';
-if (isset($assertion)){
-  function verifyAssertion($assertion, $audience){
-    $postdata='assertion=' . urlencode($assertion) . '&audience=' . urlencode($audience);
+define('__ROOT__', dirname(dirname(__FILE__)));
+require(__ROOT__.'/class/user.class.php');
+require(__ROOT__.'/class/database.class.php');
+require(__ROOT__.'/class/session.class.php');
 
-   $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "https://verifier.login.persona.org/verify");
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    $json_resp = json_decode($response);
-    return $json_resp;
-  } 
-  $valid_visitor = verifyAssertion($assertion, $audience);
-  $email = $valid_visitor->{'email'};
-  $status = $valid_visitor->{'status'};
-  $success = false;
+# Initialize classes
+$db = new Database();
+$user = new User($db);
+$session = new Session($user);
 
-  if ($status != 'okay'){
-    $response = array('success' => $success, 'reason' => 'persona connection failed.');
+$username = (isset($_POST['username']) ? $_POST['username'] : '');
+$password = (isset($_POST['password']) ? $_POST['password'] : '');
+$assertion = (isset($_POST['assertion']) ? $_POST['assertion'] : '');
+# use this variable for prod
+#$audience = 'http://visit.mozillaph.org/';
+# use this variable for local testing
+$audience = 'http://localhost/visitmozilla/';
+
+if(!isset($_POST['assertion'])){
+  # This is for Admin login
+  $login = $session->admin_login($username, $password);
+  
+  if($login){
+    $response = array('success' => true);
   }
+  else{
+    $response = array('success' => false, 'reason' => 'Incorrect admin credentials!');
+  }
+}
+else{
+  # This is for user login using persona
+  $verified = $session->verify_assertion($assertion, $audience);
 
-  if ($status == 'okay'){
-    $select_visitor_query = "SELECT email_address FROM visitors_info WHERE email_address='$email'";
-    $execute_select_visitor_query = mysqli_query($db_connection, $select_visitor_query) or die(mysqli_error($db_connection));
+  if($verified->{'status'} != 'okay'){
+    $response = array('success' => false, 'reason' => 'Persona connection failed.');
+  }
+  else{
+    $login = $session->user_login($verified->{'email'});
 
-    if (mysqli_num_rows($execute_select_visitor_query) == 1) {
-      $_SESSION['email'] = $email;
-      $success = true;
-      $response = array('success' => $success, 'email' => $email);
+    if($login){
+      $response = array('success' => true);
     }
     else{
-      $response = array('success' => $success, 'reason' => 'user is not registered.');
+      $response = array('success' => false, 'reason' => 'User doesnt exist!');
     }
   }
-  echo json_encode($response);
 }
+
+# format response as json.
+echo json_encode($response);
 ?>

@@ -1,7 +1,22 @@
 <?php
-require_once 'session.php';
+define('__ROOT__', dirname(dirname(__FILE__)));
+require(__ROOT__.'/class/user.class.php');
+require(__ROOT__.'/class/database.class.php');
+require(__ROOT__.'/class/session.class.php');
 
-session_unset();
-session_destroy();
-header('Location: ../index.php');
+# Initialize classess
+$db = new Database();
+$user = new User($db);
+$session = new Session($user);
+
+# Check if admin or user logout then 
+# redirect to specified page.
+if($session->is_admin()){
+  $session->logout();
+  header('Location: ../admin/login.php');
+}
+else{
+  $session->logout();
+  header('Location: ../index.php');
+}
 ?>

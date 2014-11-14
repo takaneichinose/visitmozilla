@@ -1,3 +1,12 @@
+<?php
+echo getenv('REMOTE_ADDR');
+'<br/>';
+'<br/>';
+'<br/>';
+echo $_ENV['REMOTE_ADDR'];
+'<br/>';
+echo $_SERVER['REMOTE_ADDR'];
+?>
 <!DOCTYPE html>
 <head>
 	<title>Mozilla Philippines Community - Visit Mozilla Community Space Manila</title>

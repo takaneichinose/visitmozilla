@@ -1,11 +1,26 @@
 <?php
-require_once '../config/config.php';
+define('__ROOT__', dirname(dirname(__FILE__)));
+require(__ROOT__.'/class/user.class.php');
+require(__ROOT__.'/class/database.class.php');
+require(__ROOT__.'/class/session.class.php');
 
-$email = $_GET['email'];
+# Initialize classes
+$db = new Database();
+$users = new User($db);
+$session = new Session($users);
 
-$select_visitor_query="SELECT * FROM visitors_info WHERE email_address='$email'";
-$execute_select_visitor_query=mysqli_query($db_connection, $select_visitor_query) or die(mysqli_error($db_connection));
-$info = mysqli_fetch_assoc($execute_select_visitor_query);
+# if user is in session, current user profile is accessible
+# if admin is in session, all profile is accessible.
+$is_logged_in = false;
+if($session->is_user()){
+  $is_logged_in = true;
+  $current_user = $users->find_by_email($_SESSION['user']);
+  $user = $users->find_by_id($current_user['visitor_id']);
+}
 
-header('location: ../admin/visitor_profile.php');
+if($session->is_admin()){
+  $id = (isset($_REQUEST['id']) ? $_REQUEST['id'] : '');
+  $user = $users->find_by_id($id);
+}
+
 ?>

@@ -1,5 +1,5 @@
 <?php
-  require_once 'functions/session.php';
+  require_once 'functions/profile.php';
 ?>
 <!DOCTYPE html>
 <head>
@@ -26,7 +26,7 @@
       <button class='button tiny right' id='login-button' style='margin-right: 10%;'>login</button>
     <?php } else { ?>
       <div id='user-settings' class='right' style='margin-right: 10%;'>
-      <a href='/admin/visitor_profile.php?email=<?php echo $_SESSION['email']; ?>' id='email'><?php echo $_SESSION['email']; ?></a>
+      <a href='<?php echo dirname('__FILE__');?>/admin/user_profile.php?id=<?php echo $user['visitor_id']; ?>' id='email'><?php echo $user['email_address']; ?></a>
         | &nbsp;
         <a href='functions/logout.php' id='logout-button'>logout</a>
       </div>
@@ -43,7 +43,7 @@
         <p>Please fill-out the following form</p>
 
         <form method="post" id="visit_form">
-        <input type="email" <?php echo ($is_logged_in) ? 'disabled' : '';?> id="email" value="<?php echo ($is_logged_in) ? $_SESSION['email'] : ''; ?>" name="email_address" placeholder="Email Address" required />
+        <input type="email" <?php echo ($is_logged_in) ? 'disabled' : '';?> id="email" value="<?php echo ($is_logged_in) ? $user['email_address'] : ''; ?>" name="email_address" placeholder="Email Addres" required />
         <input type="text" id="visitDate" name="visit_date" placeholder="Date of Visit" required/>
         <input type="text" name="visit_time" placeholder="Time of Visit" id="visitTime" required />
         <!-- END -->
@@ -65,35 +65,6 @@
 <script src="js/timepicker.js"></script>
 <script src="js/returnee.js"></script>
 <script src='https://login.persona.org/include.js'></script>
-<script>
-$(document).ready(function(){
-  navigator.id.watch({
-    onlogin: function(assertion){
-      $.ajax({
-        method: "POST",
-        url: 'functions/login.php',
-        data: {assertion: assertion},
-        success: function(resp){
-          var json_resp = JSON.parse(resp);
-          console.log(json_resp);
-          if(json_resp.success){
-            location.reload();
-          }
-          else{
-            alert(json_resp.reason);
-          }
-        }
-      });
-    },
-  });
-
-  $('#login-button').on('click', function(e){
-    e.preventDefault();
-    console.log('login-button clicked!');
-    navigator.id.request();
-  });
-
-});
-</script>
+<script src='js/persona.js'></script>
 </body>
 </html>
