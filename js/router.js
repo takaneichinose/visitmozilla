@@ -1,33 +1,33 @@
 /*globals define, console*/
 /*eslint no-console: 0*/
 (function(){
-  "use strict";
+  'use strict';
 
   define([
-      "jquery",
-      "underscore",
-      "backbone",
-      "views/index",
+    'jquery',
+    'underscore',
+    'backbone',
+    'views/index',
   ], function($, _, Backbone, indexView){
     var appRouter = Backbone.Router.extend({
       routes: {
-        "": "index",
-        "registration": "userRegistration"
+        '': 'index',
+        'registration': 'userRegistration'
       },
 
       initialize: function(){
-        console.log("route initialized");
+        console.log('route initialized');
         Backbone.history.start();
       },
 
       index: function(){
-        console.log("!");
+        console.log('!');
         var test = new indexView();
         test.render();
       },
 
       userRegistration: function(){
-        console.log("registration");
+        console.log('registration');
       }
     });
     
