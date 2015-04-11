@@ -7,7 +7,7 @@
       "jquery",
       "underscore",
       "backbone",
-      "views/index",,
+      "views/index",
   ], function($, _, Backbone, indexView){
     var appRouter = Backbone.Router.extend({
       routes: {
@@ -23,7 +23,6 @@
       index: function(){
         console.log("!");
         var test = new indexView();
-        console.log(test);
         test.render();
       },
 

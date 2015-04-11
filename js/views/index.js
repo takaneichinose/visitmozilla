@@ -2,15 +2,17 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    '/emplates/index.js'
+    'text!templates/index.html'
 ], function($, _, Backbone, indexTemplate){
   var indexView = Backbone.View.extend({
     el: $('.row'),
+
     render: function(){
       compiledTemplate = _.template(indexTemplate);
-      this.$el.append(compiledTemplate);
-      console.log('index view here motherfucker!');
+      var data = {};
+      this.$el.append(compiledTemplate, data);
     }
+    
   });
 
   return indexView;
